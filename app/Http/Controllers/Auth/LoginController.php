@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -64,6 +66,20 @@ class LoginController extends Controller
 
         $this->validate($request, $rules);
 
+        $user = User::where('username', $request->get('username'))->first();
+        $validCredentials = Hash::check($request['password'], $user->getAuthPassword());
+
+        if ($validCredentials) {
+            if ($user->session_id == 0) {
+                $user->session_id = 1;
+                $user->update();
+            }else{
+                return redirect('/login')->with('msg', trans('main.incorrect_login'));
+            }
+        }else{
+            return redirect('/login')->with('msg', trans('main.incorrect_login'));
+        }
+
         if ($this->attemptLogin($request)) {
             return $this->afterLogged($request);
         } else {
@@ -93,6 +109,7 @@ class LoginController extends Controller
         $remember = false;
         if (!empty($request->get('remember')) and $request->get('remember') == true) {
             $remember = true;
+//            Session::put('remember','logged_in');
         }
         return $this->guard()->attempt($credentials, $remember);
     }
@@ -136,5 +153,14 @@ class LoginController extends Controller
                 return redirect('/user/dashboard');
             }
         }
+    }
+
+    public function logout(Request $request) {
+        $user = Auth::user();
+        if ($user){
+            $user->update(['session_id'=>0]);
+        }
+        Auth::logout();
+        return redirect()->route('/');
     }
 }
