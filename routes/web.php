@@ -19,7 +19,7 @@ Route::group(['middleware' => 'notification'], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
 
-    Route::get('/', 'WebController@home');
+    Route::get('/', 'WebController@home')->name('/');
 
     Route::get('category/{id}', 'WebController@category');
     Route::get('category', 'WebController@category');
