@@ -46,6 +46,12 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URL'),
     ],
 
+    'github' => [
+        'client_id' => 'e32c767f66b018d5afb9',
+        'client_secret' => '1462f78eac6a4f13b0a9c35aa6dda667dacac756',
+        'redirect' => 'http://127.0.0.1:8000/callback/github',
+    ],
+
     'paytm-wallet' => [
         'env' => env('PAYTM_ENVIRONMENT'), // values : (local | production)
         'merchant_id' => env('PAYTM_MERCHANT_ID'),

@@ -249,6 +249,10 @@ Route::group(['middleware' => 'notification'], function () {
         Route::get('/sociliate/google', 'UserController@googleLogin');
         Route::any('/google/login', 'UserController@googleDoLogin');
 
+        //    Github Route
+        Route::get('/auth/redirect/{provider}', 'UserController@redirect');
+//        Route::get('/callback/{provider}', 'UserController@callback');
+
         ## Register Steps ##
         Route::get('steps/one/{phone}', 'UserController@registerStepOne');
         Route::get('steps/two/{phone}/{code}', 'UserController@registerStepTwo');
