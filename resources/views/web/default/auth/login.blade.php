@@ -30,16 +30,13 @@
 <body>
 
 <div class="limiter">
-    <div class="container-login100">
+    <div class="container-login100" style="background: url('/assets/default/logreg/images/login-page-background.jpg');background-size: cover; min-height: 750px;">
         <div class="wrap-login100">
-            <div class="login100-pic js-tilt" data-tilt>
-                <img src="{{asset('/assets/default/logreg/images/img-01.png')}}" alt="IMG">
-            </div>
 
-               <form class="form" action="/login" method="post" id="loginForm" style="text-align: left;direction: ltr">
+            <form class="form" action="/login" method="post" id="loginForm" style="text-align: left;direction: ltr">
                     {{ csrf_field() }}
 					<span class="login100-form-title">
-						Member Login
+						 Login To Tutoring School
 					</span>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -50,7 +47,6 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                 </div>
-
 
                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
 
@@ -70,11 +66,9 @@
                 </div>
 
                 <div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
+
                     <a class="txt2" href="#">
-                        {{ trans('main.forget_password') }}
+                        {{ trans('main.forgot_password') }}
                     </a>
                 </div>
 
@@ -85,6 +79,10 @@
                     </a>
                 </div>
             </form>
+                     <div class="login100-pic js-tilt">
+                <img src="{{asset('/assets/default/logreg/images/img-02.png')}}" alt="IMG">
+            </div>
+
         </div>
     </div>
 </div>

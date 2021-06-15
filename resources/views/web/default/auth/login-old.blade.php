@@ -43,6 +43,7 @@
                         </svg>
                     </a>
                     <h2>{{ trans('main.reset_password') }}</h2>
+
                     <form class="form" action="/user/reset" method="post">
                         {{ csrf_field() }}
                         <p>{{ trans('main.enter_email_reset_password') }} </p>
