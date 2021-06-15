@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: 'roboto';
     src: url('fonts/roboto/Roboto-Regular.ttf') format('truetype');
     font-weight: normal;
@@ -17,10 +17,45 @@
     src: url('fonts/roboto/Roboto-Thin.ttf');
     font-weight: normal;
     font-style: normal;
+}*/
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../logreg/fonts/poppins/Poppins-Regular.ttf');
 }
 
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../logreg/fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../logreg/fonts/poppins/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url('../logreg/fonts/montserrat/Montserrat-Bold.ttf');
+}
+
+a{
+    font-family: Poppins-Regular!important;
+}
+p{
+    font-family: Poppins-Regular!important;
+}
+h1{
+    font-family: Poppins-Regular!important;
+}
+
+
 body {
-    font-family: roboto, vazir, Tahoma, Arial, Sans-serif;
+    /*font-family: roboto, vazir, Tahoma, Arial, Sans-serif;*/
+    font-family: Poppins-Regular, sans-serif!important;
     font-size: 12px;
     direction: ltr;
 }
