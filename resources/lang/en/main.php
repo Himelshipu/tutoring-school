@@ -287,7 +287,7 @@ return [
     'username_email' => 'Username or Email',
     'password' => 'Password',
     'remember' => 'Remember Me',
-    'forget_password' => 'Forget Password?',
+    'forget_password' => 'Forgot Password?',
     'sign_in_google' => 'Sign in with Google',
     'sign_in' => 'Sign in',
     'reset_password' => 'Reset Password',
@@ -564,6 +564,6 @@ return [
 	'live_list'=>'Lives List',
 
 
-	
+
 
 ];

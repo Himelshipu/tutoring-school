@@ -55,6 +55,7 @@
                         <button class="btn btn-primary pull-left white-c"><span>{{ trans('main.reset') }}</span></button>
                     </form>
                 </div>
+
                 <div class="box registerBox" style="height: 650px">
                     <span class="reg_bg"></span>
                     <form class="form" method="post" action="/registerUser" style="text-align: left">

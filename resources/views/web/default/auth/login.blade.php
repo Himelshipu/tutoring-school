@@ -8,11 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="{{asset('/assets/default/logreg/images/icons/favicon.ico')}}">
+    <link rel="icon" href="{!! get_option('site_fav','/assets/default/404/images/favicon.png') !!}" type="image/png" sizes="32x32">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/animate/animate.css')}}">
     <!--===============================================================================================-->
@@ -27,18 +28,17 @@
 <body>
 
 <div class="limiter">
-    <div class="container-login100" style="background: url('/assets/default/logreg/images/login-page-background.jpg');background-size: cover; min-height: 750px;">
+    <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover; min-height: 750px;">
         <div class="wrap-login100">
-
             <form class="form" action="/login" method="post" id="loginForm" style="text-align: left;direction: ltr">
                 {{ csrf_field() }}
                 <span class="login100-form-title">
-						 Login To Tutoring School
+						 Login
 					</span>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100 input-field validate" type="text" name="username" placeholder="{{ trans('main.username_email') }}"
-                           autocomplete="new-password" valid-title="Fill out this form" required>
+                           autocomplete="email" valid-title="Fill out this form" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -64,28 +64,32 @@
 
                 <div class="text-center p-t-12">
                     <div class="f_link">
-                        <a href="" class="resetTag restag pull-right"
-                           style="color: #242424 !important;">{{ trans('main.forget_password') }}</a>
-                        <br>
-                        <a href="/user/sociliate/google" class="btn btn-custom btn-check-form pull-left"><i
-                                class="fa fa-google-plus icon-rs"></i><span>{{ trans('main.sign_in_google') }}</span></a>
-                        <br>
-                        <a href="{{ url('/user/auth/redirect/github') }}" class="btn btn-custom btn-check-form pull-left"><i
-                                class="fa fa-github icon-rs"></i><span>Github</span></a>
+                        <a href="" class="resetTag restag"
+                           style="color: #242424 !important;">{{ trans('main.forget_password') }}
+                        </a>
                     </div>
                 </div>
 
-                <div class="text-center p-t-136">
-                    <a class="txt2" href="#">
+                <div class="text-center p-t-20">
+
+               Sign in with <a href="/user/sociliate/google" class="btn btn-custom btn-check-form ">
+                        <img src="{{asset('/assets/default/logreg/images/google.png')}}" alt="IMG" style="width: 25px">
+                    </a>
+                or
+                <a href="{{ url('/user/auth/redirect/github') }}" class="btn btn-custom btn-check-form">
+                    <img src="{{asset('/assets/default/logreg/images/fb.png')}}" alt="IMG" style="width: 30px"></a>
+                </div>
+
+                <div class="text-center p-t-20">
+                    <a class="txt2" href="/register">
                         Create your Account
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>
                 </div>
             </form>
             <div class="login100-pic js-tilt">
-                <img src="{{asset('/assets/default/logreg/images/img-02.png')}}" alt="IMG">
+                <img src="{{asset('/assets/default/logreg/images/img-02.png')}}" alt="IMG" class="model">
             </div>
-
         </div>
     </div>
 </div>
@@ -151,7 +155,6 @@
         }
     })
 </script>
-{!! NoCaptcha::renderJs() !!}
 
 </body>
 </html>
