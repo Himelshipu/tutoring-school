@@ -41,9 +41,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URL'),
+        'client_id' => '77823473567-fktn5t1kv76d59e031u6s3h8knjbj5th.apps.googleusercontent.com',
+        'client_secret' => 'nAMXk31Om-zeWFLrdTo7ENzO',
+        'redirect' => 'http://localhost:8000/user/google/login',
     ],
 
     'github' => [
