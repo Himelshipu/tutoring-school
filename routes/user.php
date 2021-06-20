@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('auth/facebook', 'Auth\FacebookController@redirectToFacebook');
+
 Route::group(['prefix' => 'user'], function () {
     Route::group(['middleware' => ['user', 'notification']], function () {
 
