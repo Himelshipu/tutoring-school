@@ -14,8 +14,8 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/animate/animate.css')}}">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/animate/animate.css')}}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/css-hamburgers/hamburgers.min.css')}}">
     <!--===============================================================================================-->
@@ -26,8 +26,8 @@
     <!--===============================================================================================-->
 </head>
 <body>
-<div class="limiter">
-    <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover; min-height: 750px;">
+<div class="limiter" style="height: 100%;width: 100%">
+    <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover; ">
         <div class="wrap-login100">
             <form class="form" action="/registerUser" method="post" id="loginForm" style="text-align: left;direction: ltr">
                 {{ csrf_field() }}
@@ -39,7 +39,7 @@
                     <input class="input100 input-field validate" type="text" name="name" placeholder="Full Name" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+                             <i class="fa fa-user fa-lg"></i>
 						</span>
                 </div>
 
@@ -47,7 +47,7 @@
                     <input class="input100 input-field validate" type="text" name="username" placeholder="Username" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+                         <i class="fa fa-id-badge fa-lg"></i>
 						</span>
                 </div>
 
