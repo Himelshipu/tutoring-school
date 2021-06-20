@@ -58,7 +58,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #57b846;
+   color: #57b846;
 }
 
 /*---------------------------------------------*/
@@ -292,7 +292,7 @@ iframe {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-left: 35px;
+  padding-left: 30px;
   pointer-events: none;
   color: #666666;
 
@@ -375,23 +375,35 @@ iframe {
 
 @media (max-width: 768px) {
   .wrap-login100 {
-    padding: 100px 60px 33px 60px;
+      padding: 100px 24px 33px 24px;
   }
 
   .login100-form {
     width: 45%;
   }
     .login100-pic {
-        width: 35%;
+        width: 55%;
     }
 }
-
+/*@media screen and (min-device-width: 576px) and (max-device-width: 768px){
+    .login100-pic {
+        position: relative;
+        top: 15%;
+    }
+}*/
 @media (max-width: 576px) {
-  .wrap-login100 {
+  .wrap-login100 .model{
     padding: 100px 15px 33px 15px;
   }
     .login100-pic {
         display: none;
+    }
+    .login100-form {
+        width: 100%;
+    }
+    .input100{
+        font-size: 12px;
+        padding: 0px 0px 0 50px;
     }
 }
 
