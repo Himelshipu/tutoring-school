@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Auth'], function () {
     // Web Auth Routes
     Route::get('/login', 'LoginController@showLoginForm');
-    Route::post('/login', 'LoginController@login');
+    Route::post('/login', 'LoginController@login')->name('auth.login');
     Route::get('/logout', 'LoginController@logout');
 
     Route::get('/register', 'RegisterController@showRegistrationForm');
-    Route::post('/registerUser', 'RegisterController@register');
+    Route::post('/registerUser', 'RegisterController@register')->name('auth.register');
 });
 
 Route::group(['middleware' => 'notification'], function () {

@@ -66,7 +66,8 @@ class LoginController extends Controller
 
         $this->validate($request, $rules);
 
-        $user = User::where('username', $request->get('username'))->first();
+        $user = User::where('username', $request->get('username'))->orWhere('email', $request->get('username'))->first();
+//        $user = User::where('username', $request->get('username'))->first();
 
         $validCredentials = Hash::check($request['password'], $user->getAuthPassword());
 
@@ -103,15 +104,17 @@ class LoginController extends Controller
 
     protected function attemptLogin(Request $request)
     {
+
         $credentials = [
             $this->username() => $request->get('username'),
             'password' => $request->get('password')
         ];
+
         $remember = false;
         if (!empty($request->get('remember')) and $request->get('remember') == true) {
             $remember = true;
-//            Session::put('remember','logged_in');
         }
+
         return $this->guard()->attempt($credentials, $remember);
     }
 
@@ -120,7 +123,7 @@ class LoginController extends Controller
         $user = auth()->user();
         $userBlock = userMeta($user->id, 'blockDate');
 
-        if ($user->mode !== 'active') {
+        /*if ($user->mode !== 'active') {
             if (!empty($userBlock)) {
                 if ($userBlock < time()) {
                     $user->mode = 'active';
@@ -133,7 +136,7 @@ class LoginController extends Controller
                 auth()->logout();
                 return redirect()->back()->with('msg', trans('main.in_active_account_alert'));
             }
-        }
+        }*/
 
         $user->last_view = time();
         $user->updated_at = time();

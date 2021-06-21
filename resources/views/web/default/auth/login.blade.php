@@ -30,11 +30,9 @@
 <div class="limiter">
     <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover; min-height: 750px;">
         <div class="wrap-login100">
-            <form class="form" action="/login" method="post" id="loginForm" style="text-align: left;direction: ltr">
-                {{ csrf_field() }}
-                <span class="login100-form-title">
-						 Login
-					</span>
+            <form class="form" action="{{route('auth.login')}}" method="post" id="loginForm" style="text-align: left;direction: ltr">
+                @csrf
+                <span class="login100-form-title">Login</span>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100 input-field validate" type="text" name="username" placeholder="{{ trans('main.username_email') }}"

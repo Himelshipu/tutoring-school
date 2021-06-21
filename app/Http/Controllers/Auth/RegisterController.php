@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use function GuzzleHttp\Promise\all;
 
-class RegisterController extends Controller
+class
+RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -62,7 +64,7 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
-        //$this->guard()->login($user);
+        $this->guard()->login($user);
 
         ## Send Suitable Email For New User ##
         $user_register_mode = get_option('user_register_mode');
@@ -104,7 +106,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+//            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
