@@ -25,279 +25,9 @@
 
 
 <!--   menu bar-- -->
-    <style>
-        /* CSS Document */
-
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-        @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
-
-        body {
-            background: #212121;
-            font-size:22px;
-            line-height: 32px;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            word-wrap:break-word !important;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        h1 {
-            font-size: 60px;
-            text-align: center;
-            color: #FFF;
-        }
-
-        h3 {
-            font-size: 30px;
-            line-height: 34px;
-            text-align: center;
-            color: #FFF;
-        }
-
-        h3 a {
-            color: #FFF;
-        }
-
-        a {
-            color: #FFF;
-        }
-
-        h1 {
-            margin-top: 100px;
-            text-align:center;
-            font-size:60px;
-            line-height: 70px;
-            font-family: 'Bree Serif', 'serif';
-        }
-
-        #container {
-            margin: 0 auto;
-            max-width: 890px;
-        }
-
-        p {
-            text-align: center;
-        }
-
-        .toggle,
-        [id^=drop] {
-            display: none;
-        }
-
-        /* Giving a background-color to the nav container. */
-        nav {
-            margin:0;
-            padding: 0;
-            background-color: #254441;
-        }
-
-        #logo {
-            display: block;
-            padding: 0 30px;
-            float: left;
-            font-size:20px;
-            line-height: 60px;
-        }
-
-        /* Since we'll have the "ul li" "float:left"
-         * we need to add a clear after the container. */
-
-        nav:after {
-            content:"";
-            display:table;
-            clear:both;
-        }
-
-        /* Removing padding, margin and "list-style" from the "ul",
-         * and adding "position:reltive" */
-        nav ul {
-            float: right;
-            padding:0;
-            margin:0;
-            list-style: none;
-            position: relative;
-        }
-
-        /* Positioning the navigation items inline */
-        nav ul li {
-            margin: 0px;
-            display:inline-block;
-            float: left;
-            background-color: #254441;
-        }
-
-        /* Styling the links */
-        nav a {
-            display:block;
-            padding:14px 20px;
-            color:#FFF;
-            font-size:17px;
-            text-decoration:none;
-        }
-
-
-        nav ul li ul li:hover { background: #000000; }
-
-        /* Background color change on Hover */
-        nav a:hover {
-            background-color: #000000;
-        }
-
-        /* Hide Dropdowns by Default
-         * and giving it a position of absolute */
-        nav ul ul {
-            display: none;
-            position: absolute;
-            /* has to be the same number as the "line-height" of "nav a" */
-            top: 60px;
-        }
-
-        /* Display Dropdowns on Hover */
-        nav ul li:hover > ul {
-            display:inherit;
-        }
-
-        /* Fisrt Tier Dropdown */
-        nav ul ul li {
-            width:170px;
-            float:none;
-            display:list-item;
-            position: relative;
-        }
-
-        /* Second, Third and more Tiers
-         * We move the 2nd and 3rd etc tier dropdowns to the left
-         * by the amount of the width of the first tier.
-        */
-        nav ul ul ul li {
-            position: relative;
-            top:-60px;
-            /* has to be the same number as the "width" of "nav ul ul li" */
-            left:170px;
-        }
-
-
-        /* Change ' +' in order to change the Dropdown symbol */
-        li > a:after { content:  ' +'; }
-        li > a:only-child:after { content: ''; }
-
-
-        /* Media Queries
-        --------------------------------------------- */
-
-        @media all and (max-width : 768px) {
-
-            #logo {
-                display: block;
-                padding: 0;
-                width: 100%;
-                text-align: center;
-                float: none;
-            }
-
-            nav {
-                margin: 0;
-            }
-
-            /* Hide the navigation menu by default */
-            /* Also hide the  */
-            .toggle + a,
-            .menu {
-                display: none;
-            }
-
-            /* Stylinf the toggle lable */
-            .toggle {
-                display: block;
-                background-color: #254441;
-                padding:14px 20px;
-                color:#FFF;
-                font-size:17px;
-                text-decoration:none;
-                border:none;
-            }
-
-            .toggle:hover {
-                background-color: #000000;
-            }
-
-            /* Display Dropdown when clicked on Parent Lable */
-            [id^=drop]:checked + ul {
-                display: block;
-            }
-
-            /* Change menu item's width to 100% */
-            nav ul li {
-                display: block;
-                width: 100%;
-            }
-
-            nav ul ul .toggle,
-            nav ul ul a {
-                padding: 0 40px;
-            }
-
-            nav ul ul ul a {
-                padding: 0 80px;
-            }
-
-            nav a:hover,
-            nav ul ul ul a {
-                background-color: #000000;
-            }
-
-            nav ul li ul li .toggle,
-            nav ul ul a,
-            nav ul ul ul a{
-                padding:14px 20px;
-                color:#FFF;
-                font-size:17px;
-            }
-
-
-            nav ul li ul li .toggle,
-            nav ul ul a {
-                background-color: #212121;
-            }
-
-            /* Hide Dropdowns by Default */
-            nav ul ul {
-                float: none;
-                position:static;
-                color: #ffffff;
-                /* has to be the same number as the "line-height" of "nav a" */
-            }
-
-            /* Hide menus on hover */
-            nav ul ul li:hover > ul,
-            nav ul li:hover > ul {
-                display: none;
-            }
-
-            /* Fisrt Tier Dropdown */
-            nav ul ul li {
-                display: block;
-                width: 100%;
-            }
-
-            nav ul ul ul li {
-                position: static;
-                /* has to be the same number as the "width" of "nav ul ul li" */
-
-            }
-
-        }
-
-        @media all and (max-width : 330px) {
-
-            nav ul li {
-                display:block;
-                width: 94%;
-            }
-
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/reset.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/style.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/ionicon.min.css')}}">
 <!--    menu bar-- -->
 
     @if(get_option('site_rtl','0') == 1)
@@ -323,21 +53,14 @@
 
 
 
-
 <div class="container-fluid">
     <div class="row line-header"></div>
     <div class="col-md-10 col-md-offset-1">
         <div class="row middle-header">
             <div class="col-md-3 col-xs-12 tab-con">
-                <div class="row">
-                    <a href="/">
-                        <img src="{{ get_option('site_logo') }}" alt="{{ get_option('site_title') }}" class="logo-icon"/>
-                        <img src="{{ get_option('site_logo_type') }}" alt="{{ get_option('site_title') }}" class="logo-type"/>
 
-                    </a>
-                </div>
             </div>
-            <div class="col-md-5 col-xs-12 tab-con">
+            <div class="col-md-6 col-xs-12 tab-con">
                 <div class="row search-box">
                     <form action="/search">
                         {{ csrf_field() }}
@@ -346,7 +69,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-4 col-xs-12 text-center tab-con">
+            <div class="col-md-3 col-xs-12 text-center tab-con">
                 <div class="row">
                     @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
                         <a href="/user/content/new" class="header-upload-button pulse"><span class="headericon mdi mdi-arrow-up-bold"></span>{{ trans('main.upload_course') }}</a>
@@ -411,84 +134,87 @@
         </div>
     </div>
     <div class="row sep"></div>
-    <!-- - - - - - - - - - - - - - Wrapper - - - - - - - - - - - - - - - - -->
-    <nav>
-        <div id="logo">
-            <a href="/">
-            <!--            <img src="{{ get_option('site_logo') }}" alt="{{ get_option('site_title') }}" class="logo-icon"/>-->
-                <img src="{{ get_option('site_logo_type') }}" alt="{{ get_option('site_title') }}" class="logo-type" width="100px">
 
-            </a>
-        </div>
-
-        <label for="drop" class="toggle">
-            <span class="fa fa-bars"></span>
-        </label>
-        <input type="checkbox" id="drop" />
-        <ul class="menu">
-            <li><a href="#">Home</a></li>
-            <li>
-                <!-- First Tier Drop Down -->
-                <label for="drop-1" class="toggle">WordPress+
-
-                </label>
-                <a href="#">WordPress</a>
-                <input type="checkbox" id="drop-1"/>
-                <ul>
-                    <li><a href="#">Themes and stuff</a></li>
-                    <li><a href="#">Plugins</a></li>
-                    <li><a href="#">Tutorials</a></li>
-                </ul>
-
-            </li>
-
-            <li><a href="#">Graphic Design</a></li>
-            <li><a href="#">Inspiration</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign Up</a></li>
-        </ul>
-    </nav>
-    <!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
-    <div class="hidden-xs" id="header-menu-section">
+    <div>
         <div class="row">
-            <div class="menu-header">
 
-                <div class="col-md-1 text-center tab-con">
-                    <a href="/"><img src="{{ get_option('site_logo') }}" class="menu-logo"/></a>
-                </div>
-                <div class="col-md-10 col-xs-12 tab-con">
-                    <ul id="accordion" class="cat-filters-li accordion accordion-s">
-                        @foreach($setting['category'] as $mainCategory)
-                            @if(count($mainCategory->childs)>0)
-                                <li class="has-child" onmouseover="this.style.borderColor='{{ $mainCategory->color }}'" onmouseleave="this.style.borderColor='transparent'">
-                                    <a href="javascript:void(0);">
-                                        <img src="{{ $mainCategory->image }}"/>
-                                        {{  $mainCategory->title }}
-                                    </a>
-                                    <ul>
-                                        @foreach($mainCategory->childs as $child)
-                                            <li onmouseover="this.style.borderColor='{{ $child->color }}'" onmouseleave="this.style.borderColor='transparent'">
-                                                <a href="/category/{{ $child->class }}">
-                                                    <img src="{{ $child->image }}"/>
-                                                    {{ $child->title }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="no-child" onmouseover="this.style.borderColor='{{ $mainCategory->color }}'" onmouseleave="this.style.borderColor='transparent'">
-                                    <a href="/category/{{ $mainCategory->class }}">
-                                        <img src="{{ $mainCategory->image }}"/>
-                                        {{ $mainCategory->title }}
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div>
+            <!-- Section: Header -->
+            <header class="nav-header">
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="header-item-left">
+                            <a href="/">
+                                <img src="{{ get_option('site_logo') }}" alt="{{ get_option('site_title') }}" class="logo-icon"/>
+                            </a>
+                        </div>
+                        <!-- Section: Navbar Menu -->
+                        <div class="header-item-center">
+                            <div class="overlay"></div>
+                            <nav class="menu">
+                                <div class="menu-mobile-header">
+                                    <button type="button" class="menu-mobile-arrow"><i class="ion ion-ios-arrow-back"></i></button>
+                                    <div class="menu-mobile-title"></div>
+                                    <button type="button" class="menu-mobile-close"><i class="ion ion-ios-close"></i></button>
+                                </div>
+                                <ul class="menu-section">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Categories <i class="ion ion-ios-arrow-down"></i></a>
+                                        <div class="menu-subs menu-mega menu-column-4">
+                                            @foreach($setting['category'] as $mainCategory)
+                                            <div class="list-item">
+                                                <h4 class="title">
+                                                    {{$mainCategory->title }}
+                                                </h4>
+                                                <ul>
+                                                    @forelse($mainCategory->childs as $child)
+                                                        <li>
+                                                            <a href="/category/{{ $child->class }}">
+                                                                {{ $child->title }}
+                                                            </a>
+                                                        </li>
+                                                        @empty
+                                                            "N/A Right Now"
+                                                    @endforelse
+                                                </ul>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </li>
+                                    <li><a href="#">Blogs</a></li>
+                                    <li><a href="#">About Us</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
+                                        <div class="menu-subs menu-column-1">
+                                            <ul>
+                                                <li><a href="#">Login & Register</a></li>
+                                                <li><a href="#">Help & Question</a></li>
+                                                <li><a href="#">Privacy & Policy</a></li>
+                                                <li><a href="#">Term of Cookies</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
 
-            </div>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="header-item-right">
+                            <a href="#" class="menu-icon"><i class="ion ion-md-search"></i></a>
+                            <a href="#" class="menu-icon"><i class="ion ion-md-heart"></i></a>
+                            <a href="#" class="menu-icon"><i class="ion ion-md-cart"></i></a>
+                            <button type="button" class="menu-mobile-trigger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            <!-- Section: Header -->
+
             <div class="sep-green"></div>
             <div class="menu-header menu-header-child">
 
@@ -501,43 +227,5 @@
         </div>
     </div>
 
-    <div class="hidden-md hidden-lg hidden-sm mobile-menu">
-        <div class="row h-20"></div>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#"><b>{{ trans('main.category') }}</b></a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        @foreach($setting['category'] as $mainCategory)
-                            @if(count($mainCategory->childs)>0)
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$mainCategory->title}}<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        @foreach($mainCategory->childs as $child)
-                                            <li><a href="/category/{{ $child->class }}">{{ $child->title }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li><a href="/category/{{ $mainCategory->class }}">{{$mainCategory->title}}</a></li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    </div>
 </div>
-
 

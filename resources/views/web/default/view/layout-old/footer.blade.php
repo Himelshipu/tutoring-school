@@ -85,7 +85,15 @@
 @endif
 
 {{--menubar--}}
-<script src="{{asset('assets/default/new_menu/js/script.js')}}" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="{{asset('assets/default/menubar/js/megamenu.js" type="text/javascript')}}"></script>
+{{-- <script src="https://cdn.jsdelivr.net/gh/rehyan21/Mega-Menu/build/js/megamenu.min.js" type="text/javascript"></script>--}}
+<script type="text/javascript">
+
+</script>
+
+
 {{--menubar--}}
 
 

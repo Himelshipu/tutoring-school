@@ -1,3 +1,5 @@
 @include(getTemplate().'.view.layout.header')
-        @yield('page')
+
+@yield('page')
+
 @include(getTemplate().'.view.layout.footer')

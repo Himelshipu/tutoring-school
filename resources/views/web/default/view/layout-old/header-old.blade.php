@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,11 +25,9 @@
     <link rel="stylesheet" href="/assets/default/stylesheets/vendor/mdi/css/materialdesignicons.min.css"/>
 
 
-<!--   menu bar-- -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/reset.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/style.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/ionicon.min.css')}}">
-<!--    menu bar-- -->
+    <!-- menubar -->
+
+     <!-- menubar -->
 
     @if(get_option('site_rtl','0') == 1)
         <link rel="stylesheet" href="/assets/default/stylesheets/view-custom-rtl.css"/>
@@ -53,14 +52,27 @@
 
 
 
+
+
+<!-- - - - - - - - - - - - - - Wrapper - - - - - - - - - - - - - - - - -->
+
+
+<!-- - - - - - - - - - - - end Wrapper - - - - - - - - - - - - - - -->
+
 <div class="container-fluid">
     <div class="row line-header"></div>
     <div class="col-md-10 col-md-offset-1">
         <div class="row middle-header">
             <div class="col-md-3 col-xs-12 tab-con">
+                <div class="row">
+                    <a href="/">
+                        <img src="{{ get_option('site_logo') }}" alt="{{ get_option('site_title') }}" class="logo-icon"/>
+                        <img src="{{ get_option('site_logo_type') }}" alt="{{ get_option('site_title') }}" class="logo-type"/>
 
+                    </a>
+                </div>
             </div>
-            <div class="col-md-6 col-xs-12 tab-con">
+            <div class="col-md-5 col-xs-12 tab-con">
                 <div class="row search-box">
                     <form action="/search">
                         {{ csrf_field() }}
@@ -69,7 +81,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-3 col-xs-12 text-center tab-con">
+            <div class="col-md-4 col-xs-12 text-center tab-con">
                 <div class="row">
                     @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
                         <a href="/user/content/new" class="header-upload-button pulse"><span class="headericon mdi mdi-arrow-up-bold"></span>{{ trans('main.upload_course') }}</a>
@@ -134,123 +146,8 @@
         </div>
     </div>
     <div class="row sep"></div>
-
     <div class="hidden-xs" id="header-menu-section">
         <div class="row">
-
-            <!-- Section: Header -->
-            <header class="nav-header">
-                <div class="container">
-                    <div class="wrapper">
-                        <div class="header-item-left">
-                            <a href="/">
-                                <img src="{{ get_option('site_logo') }}" alt="{{ get_option('site_title') }}" class="logo-icon"/>
-                            </a>
-                        </div>
-                        <!-- Section: Navbar Menu -->
-                        <div class="header-item-center">
-                            <div class="overlay"></div>
-                            <nav class="menu">
-                                <div class="menu-mobile-header">
-                                    <button type="button" class="menu-mobile-arrow"><i class="ion ion-ios-arrow-back"></i></button>
-                                    <div class="menu-mobile-title"></div>
-                                    <button type="button" class="menu-mobile-close"><i class="ion ion-ios-close"></i></button>
-                                </div>
-                                <ul class="menu-section">
-                                    <li><a href="#">Home</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Categories <i class="ion ion-ios-arrow-down"></i></a>
-                                        <div class="menu-subs menu-mega menu-column-4">
-                                            @foreach($all->chunk(2) as $datas)
-                                            <div class="list-item">
-
-                                                <h4 class="title">Men's Fashion</h4>
-                                                <ul>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                </ul>
-                                                <h4 class="title">Kid's Fashion</h4>
-                                                <ul>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                </ul>
-                                            </div>
-                                            @endforeach
-                                            <div class="list-item">
-                                                <h4 class="title">Women's Fashion</h4>
-                                                <ul>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                </ul>
-                                                <h4 class="title">Health & Beauty</h4>
-                                                <ul>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="list-item">
-                                                <h4 class="title">Home & Lifestyle</h4>
-                                                <ul>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                    <li><a href="#">Product List</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="list-item">
-                                                <img src="./asset/image-5.jpg" class="responsive" alt="Shop Product">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#">Blogs</a></li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
-                                        <div class="menu-subs menu-column-1">
-                                            <ul>
-                                                <li><a href="#">Login & Register</a></li>
-                                                <li><a href="#">Help & Question</a></li>
-                                                <li><a href="#">Privacy & Policy</a></>
-                                                <li><a href="#">Term of Cookies</a></>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                            </nav>
-                        </div>
-
-                        <div class="header-item-right">
-                            <a href="#" class="menu-icon"><i class="ion ion-md-search"></i></a>
-                            <a href="#" class="menu-icon"><i class="ion ion-md-heart"></i></a>
-                            <a href="#" class="menu-icon"><i class="ion ion-md-cart"></i></a>
-                            <button type="button" class="menu-mobile-trigger">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </header>
-            <!-- Section: Header -->
-
-
             <div class="menu-header">
 
                 <div class="col-md-1 text-center tab-con">
@@ -300,7 +197,6 @@
             </div>
         </div>
     </div>
-
     <div class="hidden-md hidden-lg hidden-sm mobile-menu">
         <div class="row h-20"></div>
         <nav class="navbar navbar-default">
@@ -340,8 +236,3 @@
     </div>
 </div>
 
-
-
-<div style="background: darkred;height: 100px">
-a
-</div>
