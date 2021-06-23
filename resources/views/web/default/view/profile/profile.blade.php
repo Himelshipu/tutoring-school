@@ -30,7 +30,7 @@
             </div>
             <div class="location-section col-md-10 col-xs-12">
                 <div class="profile_name_item"><b>{{ $profile->name }}</b></div>
-                <div class="profile_register_date_item"><b>{{ trans('main.registration_date') }}: {{ date('d F Y',$profile->created_at) }}</b></div>
+{{--                <div class="profile_register_date_item"><b>{{ trans('main.registration_date') }}: {{ date('d F Y',$profile->created_at) }}</b></div>--}}
             </div>
         </div>
     </div>
@@ -52,12 +52,12 @@
                         </a>
                     </div>
                     <div class="h-10 visible-xs"></div>
-                    <div class="col-md-1 col-sm-6 col-xs-6 tab-con">
+<!--                    <div class="col-md-1 col-sm-6 col-xs-6 tab-con">
                         <a href="javascript:void(0)" tab-id="t-channels" class="item-box sbox3">
                             <span class="micon mdi mdi-bullhorn"></span>
                             <span>{{ trans('main.channels') }}</span>
                         </a>
-                    </div>
+                    </div>-->
                     <div class="col-md-1 col-sm-6 col-xs-6 tab-con">
                         <a href="javascript:void(0)" tab-id="t-medals" class="item-box sbox3">
                             <span class="micon mdi mdi-medal"></span>
@@ -65,12 +65,12 @@
                         </a>
                     </div>
                     <div class="h-10 visible-xs"></div>
-                    <div class="col-md-1 col-sm-6 col-xs-6 tab-con">
+<!--                    <div class="col-md-1 col-sm-6 col-xs-6 tab-con">
                         <a href="javascript:void(0)" tab-id="t-record" class="item-box sbox3">
                             <span class="micon mdi mdi-video"></span>
                             <span>{{ trans('main.future_courses') }}</span>
                         </a>
-                    </div>
+                    </div>-->
                     <div class="col-md-1 col-sm-6 col-xs-6 tab-con">
                         <a href="javascript:void(0)" tab-id="t-article" class="item-box sbox3">
                             <span class="micon mdi mdi-notebook"></span>
@@ -96,7 +96,7 @@
 
                 <div id="t-biography" class="profile-section-fade profile-section sbox3 doview">
                     <div class="row">
-                        <div class="col-md-3 col-xs-12 col-sm-6 text-center">
+                        <div class="col-md-4 col-xs-12 col-sm-6 text-center">
                             <h4>{{ trans('main.courses_feedback') }}</h4>
                             <div class="h-5"></div>
                             <span class="dis-block">({{ $video_rate }})</span>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-xs-12 col-sm-6 text-center">
+                        <div class="col-md-4 col-xs-12 col-sm-6 text-center">
                             <h4>{{ trans('main.support_feedback') }}</h4>
                             <div class="h-5"></div>
                             <span class="dis-block">({{ $support_rate }})</span>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-xs-12 col-sm-6 text-center">
+<!--                        <div class="col-md-4 col-xs-12 col-sm-6 text-center">
                             <h4>{{ trans('main.postal_feedback') }}</h4>
                             <div class="h-5"></div>
                             <span class="dis-block">({{ $sell_rate }})</span>
@@ -128,8 +128,8 @@
                                      aria-valuemin="1" aria-valuemax="5" style="width:{{ ($sell_rate / 5) * 100 }}%">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-xs-12 col-sm-6 text-center">
+                        </div>-->
+                        <div class="col-md-4 col-xs-12 col-sm-6 text-center">
                             <h4>{{ trans('main.articles_feedback') }}</h4>
                             <div class="h-5"></div>
                             <span class="dis-block">({{ $article_rate }})</span>

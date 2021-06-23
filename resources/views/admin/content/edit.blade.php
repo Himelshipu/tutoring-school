@@ -121,22 +121,22 @@
                                         <label class="custom-switch-description" for="inputDefault">{{ trans('admin.vendor_supports_item') }}</label>
                                     </label>
                                 </div>
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label class="custom-switch">
                                         <input type="hidden" name="post" value="0">
                                         <input type="checkbox" name="post" value="1" class="custom-switch-input" @if($item->post == 1) checked="checked" @endif />
                                         <span class="custom-switch-indicator"></span>
                                         <label class="custom-switch-description" for="inputDefault">{{ trans('admin.vendor_postal_sale') }}</label>
                                     </label>
-                                </div>
-                                <div class="form-group">
+                                </div>-->
+<!--                                <div class="form-group">
                                     <label class="custom-switch">
                                         <input type="hidden" name="download" value="0">
                                         <input type="checkbox" name="download" value="1" class="custom-switch-input" @if($item->download == 1) checked="checked" @endif />
                                         <span class="custom-switch-indicator"></span>
                                         <label class="custom-switch-description" for="inputDefault">{{ trans('admin.download') }}</label>
                                     </label>
-                                </div>
+                                </div>-->
                             </div>
 
                             <div class="form-group">
@@ -227,7 +227,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label class="col-md-2 control-label">{{ trans('admin.postal_price') }}</label>
                                 <div class="col-md-8">
                                     <div class="input-group">
@@ -237,7 +237,7 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
 
                             <?php

@@ -137,7 +137,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+
+<!--                            <div class="form-group">
                                 <label class="control-label col-md-5 tab-con col-md-offset-1 dinb">{{ trans('main.vendor_postal_sale') }}</label>
                                 <div class="col-md-6 tab-con">
                                     <div class="switch switch-sm switch-primary pull-left" id="post_toggle">
@@ -145,7 +146,8 @@
                                         <input type="checkbox" name="post" value="1" data-plugin-ios-switch @if($item->post == 1) checked="checked" @endif />
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
+
                             <div class="form-group">
                                 <label class="control-label tab-con col-md-5 col-md-offset-1 dinb" for="inputDefault">{{ trans('main.support') }}</label>
                                 <div class="col-md-6 tab-con">
@@ -155,7 +157,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label class="control-label tab-con col-md-5 col-md-offset-1 dinb" for="inputDefault">{{ trans('main.download') }}</label>
                                 <div class="col-md-6 tab-con">
                                     <div class="switch switch-sm switch-primary pull-left">
@@ -163,7 +165,7 @@
                                         <input type="checkbox" name="download" value="1" data-plugin-ios-switch @if($item->download == 1) checked="checked" @endif />
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </form>
                         <form method="post" id="step-3-form-meta" class="form-horizontal">
                             {{ csrf_field() }}
@@ -178,7 +180,7 @@
 
                                 </div>
                             </div>
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label class="control-label col-md-4 tab-con">{{ trans('main.postal_price') }}</label>
                                 <div class="col-md-8 tab-con">
                                     <div class="input-group">
@@ -186,7 +188,7 @@
                                         <span class="input-group-addon click-for-upload img-icon-s">{{ currencySign() }}</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </form>
                         <form method="post" id="step-3-form-subscribe" class="form-horizontal">
                             {{ csrf_field() }}
@@ -344,13 +346,22 @@
                                             {{ csrf_field() }}
                                             <input type="hidden" name="content_id" value="{{ $item->id }}">
 
-                                            <div class="form-group">
+<!--                                            <div class="form-group">
                                                 <label class="control-label col-md-2 tab-con">Video Type</label>
                                                 <div class="col-md-7 tab-con">
                                                     <select name="server" class="form-control server">
                                                         <option value="">Upload</option>
                                                         <option value="youtube">Youtube</option>
                                                         <option value="vimeo">Vimeo</option>
+                                                    </select>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="form-group hidden">
+                                                <label class="control-label col-md-2 tab-con">Video Type</label>
+                                                <div class="col-md-7 tab-con">
+                                                    <select name="server" class="form-control server">
+                                                        <option value="" selected>Upload</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -363,7 +374,10 @@
                                                         <button type="button" id="lfm_upload_video" data-input="upload_video" data-preview="holder" class="btn btn-primary">
                                                             Choose
                                                         </button>
-                                                        @if($item->content_type != 'captivate')<span data-toggle="modal" href="#vimeo-modal" class="input-group-addon click-for-vimeo img-icon-s"><span class="formicon mdi mdi-vimeo"></span></span>@endif
+<!--                                                        @if($item->content_type != 'captivate')<span data-toggle="modal" href="#vimeo-modal"
+                                                                  class="input-group-addon click-for-vimeo img-icon-s">
+                                                                <span class="formicon mdi mdi-vimeo"></span></span>
+                                                            @endif-->
                                                     </div>
                                                 </div>
 
@@ -457,7 +471,8 @@
                                                         <button type="button" id="lfm_upload_video" data-input="upload_video2" data-preview="holder" class="btn btn-primary">
                                                             <span class="formicon mdi mdi-arrow-up-thick"></span>
                                                         </button>
-                                                        @if($item->content_type != 'captivate')<span data-toggle="modal" href="#vimeo-modal" class="input-group-addon click-for-vimeo img-icon-s"><span class="formicon mdi mdi-vimeo"></span></span>@endif
+                                                        {{--@if($item->content_type != 'captivate')<span data-toggle="modal" href="#vimeo-modal"
+                                                          class="input-group-addon click-for-vimeo img-icon-s"><span class="formicon mdi mdi-vimeo"></span></span>@endif--}}
                                                     </div>
                                                 </div>
                                                 <label class="control-label tab-con col-md-1">{{ trans('main.sort') }}</label>
