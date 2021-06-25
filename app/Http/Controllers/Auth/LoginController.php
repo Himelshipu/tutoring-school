@@ -55,6 +55,11 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+//        User agent and user device ip
+//        $useragent['useragent'] = $request->server('HTTP_USER_AGENT');
+//        $ip['ip'] = $request->ip();
+
         $rules = [
             'username' => 'required',
             'password' => 'required|min:4',

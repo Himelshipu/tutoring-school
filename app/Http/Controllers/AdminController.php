@@ -49,12 +49,14 @@ use App\Models\TicketsCategory;
 use App\Models\TicketsMsg;
 use App\Models\TicketsUser;
 use App\Models\Transaction;
+use App\Models\Usage;
 use App\Models\Usercategories;
 use App\Models\Usermeta;
 use App\Models\UserRate;
 use App\Models\UserRateRelation;
-use App\User;
 use App\Models\ViewTemplate;
+use App\User;
+use Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -64,13 +66,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Intervention\Image\Facades\Image;
 use Maatwebsite\Excel\Facades\Excel;
-use PayPal\Api\Amount;
-use PayPal\Api\Item;
-use PayPal\Api\ItemList;
-use PayPal\Api\Payer;
-use PayPal\Api\Payment;
-use PayPal\Api\PaymentExecution;
-use PayPal\Api\RedirectUrls;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
@@ -78,7 +73,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $paypal_conf = \Config::get('paypal');
+        $paypal_conf = Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
                 $paypal_conf['client_id'],
                 $paypal_conf['secret'])
@@ -334,14 +329,16 @@ class AdminController extends Controller
 
         ## Notification Center
         if ($uUser->category_id != $request->category_id && isset($uUser->category->title)) {
-            sendNotification(0, ['[u.username]' => $uUser->username, '[u.c.title]' => $uUser->category->title], get_option('notification_template_change_group'), 'user', $uUser->id);
+            sendNotification(0, ['[u.username]' => $uUser->username, '[u.c.title]' => $uUser->category->title],
+                                get_option('notification_template_change_group'), 'user', $uUser->id);
         }
 
         $uUser->update($request->all());
         return back();
     }
 
-    public function userPassword($id){
+    public function userPassword($id)
+    {
         $user = User::find($id);
     }
 
@@ -541,7 +538,7 @@ class AdminController extends Controller
             return redirect('/user');
         }
 
-        abort(404);;
+        abort(404);
     }
 
 
@@ -1220,8 +1217,8 @@ class AdminController extends Controller
         $contentMenu = contentMenu();
         $filters = ContentCategoryFilter::where('category_id', $item->category_id)->with('tags')->get();
         $products = Content::where('mode', 'publish')->get();
-        $categories = ContentCategory::orderBy('id','DESC')->get();
-        return view('admin.content.edit', ['categories'=>$categories,'item' => $item, 'meta' => $meta, 'menus' => $contentMenu, 'filters' => $filters, 'products' => $products]);
+        $categories = ContentCategory::orderBy('id', 'DESC')->get();
+        return view('admin.content.edit', ['categories' => $categories, 'item' => $item, 'meta' => $meta, 'menus' => $contentMenu, 'filters' => $filters, 'products' => $products]);
     }
 
     public function contentDelete($id)
@@ -1473,7 +1470,7 @@ class AdminController extends Controller
 
     public function contentUsage($id, Request $request)
     {
-        $list = \App\Models\Usage::with('user')
+        $list = Usage::with('user')
             ->where('product_id', $id)
             ->select('user_id', DB::raw('count(*) as total'))
             ->groupBy('user_id')
@@ -1882,9 +1879,9 @@ class AdminController extends Controller
 
     public function articleEdit($id)
     {
-        $article    = Article::find($id);
+        $article = Article::find($id);
         $categories = ContentCategory::get();
-        return view('admin.blog.articleedit', ['item' => $article,'categories'=>$categories]);
+        return view('admin.blog.articleedit', ['item' => $article, 'categories' => $categories]);
     }
 
     public function articleDelete($id)
@@ -2733,8 +2730,8 @@ class AdminController extends Controller
 
         $data = $request->all();
 
-        foreach ($data as $index=>$d){
-            if(is_array($d)){
+        foreach ($data as $index => $d) {
+            if (is_array($d)) {
                 $data[$index] = json_encode($d);
             }
         }
@@ -3052,7 +3049,7 @@ class AdminController extends Controller
 
     public function QuizzesList()
     {
-        if(!function_exists('checkQuiz')){
+        if (!function_exists('checkQuiz')) {
             return view('admin.purchase');
         }
         $quizzes = Quiz::with(['content', 'questions', 'QuizResults'])->get();
@@ -3125,7 +3122,7 @@ class AdminController extends Controller
     public function QuizResultsDelete($quiz_id, $result_id)
     {
         $quiz = Quiz::findOrFail($quiz_id);
-        if($quiz){
+        if ($quiz) {
             $result = QuizResult::where('id', $result_id)
                 ->where('quiz_id', $quiz_id)
                 ->first();
@@ -3143,7 +3140,7 @@ class AdminController extends Controller
     // **********
     public function CertificatesList(Request $request)
     {
-        if(!function_exists('checkQuiz')){
+        if (!function_exists('checkQuiz')) {
             return view('admin.purchase');
         }
         $query = Certificate::query();
@@ -3181,7 +3178,7 @@ class AdminController extends Controller
 
     public function CertificatesTemplatesList(Request $request)
     {
-        if(!function_exists('checkQuiz')){
+        if (!function_exists('checkQuiz')) {
             return view('admin.purchase');
         }
         $templates = CertificateTemplate::all();
@@ -3194,7 +3191,7 @@ class AdminController extends Controller
 
     public function CertificatesNewTemplate()
     {
-        if(!function_exists('checkQuiz')){
+        if (!function_exists('checkQuiz')) {
             return view('admin.purchase');
         }
         return view('admin.certificates.create_template');
@@ -3251,9 +3248,9 @@ class AdminController extends Controller
         $body = str_replace('[course]', 'course name', $body);
         $body = str_replace('[grade]', '55', $body);
 
-        $img = Image::make(getcwd().$data['image']);
+        $img = Image::make(getcwd() . $data['image']);
         $img->text($body, $data['position_x'], $data['position_y'], function ($font) use ($data) {
-            $font->file(getcwd().'/assets/admin/fonts/nunito-v9-latin-regular.ttf');
+            $font->file(getcwd() . '/assets/admin/fonts/nunito-v9-latin-regular.ttf');
             $font->size($data['font_size']);
             $font->color($data['text_color']);
         });
@@ -3280,23 +3277,27 @@ class AdminController extends Controller
     ############
     ## Live ####
     ############
-    public function liveList(){
+    public function liveList()
+    {
         $lists = MeetingDate::orderBy('id')->with('content')->paginate(10);
-        return view('admin.live.list',compact('lists'));
+        return view('admin.live.list', compact('lists'));
     }
 
 
-    public function liveDetails($id){
+    public function liveDetails($id)
+    {
         $live = MeetingDate::find($id);
-        if(!$live)
+        if (!$live)
             return abort(404);
 
         $Sells = Sell::where('content_id', $live->content_id)->pluck('user_id')->toArray();
-        $list = User::whereIn('id',$Sells);
+        $list = User::whereIn('id', $Sells);
 
-        return view('admin.live.details',['list'=>$list->paginate(20),'live'=>$live]);
+        return view('admin.live.details', ['list' => $list->paginate(20), 'live' => $live]);
     }
-    public function liveDelete($id){
+
+    public function liveDelete($id)
+    {
         MeetingDate::find($id)->delete();
         return back()->with('msg', trans('admin.result_delete_msg'));
     }
