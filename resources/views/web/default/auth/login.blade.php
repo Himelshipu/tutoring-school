@@ -9,26 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="icon" href="{!! get_option('site_fav','/assets/default/404/images/favicon.png') !!}" type="image/png" sizes="32x32">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/animate/animate.css')}}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/css-hamburgers/hamburgers.min.css')}}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('logreg/vendor/select2/select2.min.css')}}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{asset('/assets/default/logreg/css/util.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('/assets/default/logreg/css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/animate/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/css/main.css')}}">
     <!--===============================================================================================-->
 </head>
 <body>
 
 <div class="limiter">
-    <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover; min-height: 750px;">
+    <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover;">
         <div class="wrap-login100">
             <form class="form" action="{{route('auth.login')}}" method="post" id="loginForm" style="text-align: left;direction: ltr">
                 @csrf
@@ -96,21 +89,17 @@
 
 
 <!--===============================================================================================-->
-<script src="{{asset('logreg/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<!--===============================================================================================-->
-<script src="{{asset('logreg/vendor/bootstrap/js/popper.js')}}"></script>
-<script src="{{asset('logreg/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<!--===============================================================================================-->
-<script src="{{asset('logreg/vendor/select2/select2.min.js')}}"></script>
-<!--===============================================================================================-->
-<script src="{{asset('logreg/vendor/tilt/tilt.jquery.min.js')}}"></script>
+<script src="{{asset('assets/default/logreg/jquery/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('assets/default/logreg/bootstrap/js/popper.js')}}"></script>
+<script src="{{asset('assets/default/logreg/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/default/logreg/tilt/tilt.jquery.min.js')}}"></script>
 <script >
     $('.js-tilt').tilt({
         scale: 1.1
     })
 </script>
 <!--===============================================================================================-->
-<script src="{{asset('assets/default/logreg/js/main.js')}}"></script>
+{{--<script src="{{asset('assets/default/logreg/js/main.js')}}"></script>--}}
 
 
 
