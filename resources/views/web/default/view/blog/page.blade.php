@@ -1,7 +1,7 @@
 @extends(getTemplate().'.view.layout.layout')
 @section('title')
     {{ !empty($setting['site']['site_title']) ? $setting['site']['site_title'] : '' }}
-@endsection
+@endsectjui2 ion
 @section('meta_description',get_option('site_meta_description'))
 @section('meta_keyword',get_option('site_meta_keyword'))
 @section('page')

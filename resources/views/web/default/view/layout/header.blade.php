@@ -32,10 +32,6 @@
 
 
     <style>
-        /*.container{
-            width:600px;
-            margin:50px auto;
-        }*/
 
         .searchbox {
             position: relative;
@@ -67,21 +63,6 @@
             border-radius: 20px;
         }
 
-        /*.searchbox-input::-webkit-input-placeholder {
-            color: #d74b4b;
-        }
-
-        .searchbox-input:-moz-placeholder {
-            color: #d74b4b;
-        }
-
-        .searchbox-input::-moz-placeholder {
-            color: #d74b4b;
-        }
-
-        .searchbox-input:-ms-input-placeholder {
-            color: #d74b4b;
-        }*/
 
         .searchbox-icon,
         .searchbox-submit {
@@ -151,14 +132,14 @@
 
             </div>
             <div class="col-md-6 col-xs-12 tab-con">
-                <div class="row search-box">
+<!--                <div class="row search-box">
                     <form action="/search">
                         {{ csrf_field() }}
                         <input type="text" name="q" class="col-md-11 provider-json" placeholder="Search..."/>
                         <button type="submit" name="search" class="pull-left col-md-1"><span
                                 class="homeicon mdi mdi-magnify"></span></button>
                     </form>
-                </div>
+                </div>-->
             </div>
             <div class="col-md-3 col-xs-12 text-center tab-con">
                 <div class="row">
@@ -231,8 +212,9 @@
                             </div>
                         </a>
                     @else
-                        <a href="/user?redirect={{ Request::path() }}" class="header-login-button"><span
-                                class="headericon mdi mdi-account"></span>{{ trans('main.login_signup') }}</a>
+                       {{-- <a href="/user?redirect={{ Request::path() }}" class="header-login-button"><span
+                                class="headericon mdi mdi-account"></span>{{ trans('main.login_signup') }}</a>--}}
+                        <span> &nbsp; </span>
                     @endif
                 </div>
             </div>
@@ -242,7 +224,6 @@
 
     <div>
         <div class="row">
-
             <!-- Section: Header -->
             <header class="nav-header">
                 <div class="container">
@@ -250,7 +231,7 @@
                         <div class="header-item-left">
                             <a href="/">
                                 <img src="{{ get_option('site_logo') }}" alt="{{ get_option('site_title') }}"
-                                     class="logo-icon"/>
+                                     class="logo-icon" style="height: 95px;">
                             </a>
                         </div>
                         <!-- Section: Navbar Menu -->
@@ -289,16 +270,16 @@
                                             @endforeach
                                         </div>
                                     </li>
-                                    <li><a href="#">Blogs</a></li>
+                                    <li><a href="{{url('/blog')}}">Blogs</a></li>
                                     <li><a href="#">About Us</a></li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
                                         <div class="menu-subs menu-column-1">
                                             <ul>
-                                                <li><a href="#">Login & Register</a></li>
+                                                <li><a href="/user?redirect={{ Request::path() }}">Sign in</a></li>
+                                                <li><a href="/register">Sign Up</a></li>
                                                 <li><a href="#">Help & Question</a></li>
                                                 <li><a href="#">Privacy & Policy</a></li>
-                                                <li><a href="#">Term of Cookies</a></li>
                                             </ul>
                                         </div>
                                     </li>
