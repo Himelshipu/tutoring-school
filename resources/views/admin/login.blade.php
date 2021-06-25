@@ -5,6 +5,16 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Admin &mdash; Tutoring School</title>
 
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/animate/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/logreg/css/main.css')}}">
+    <!--===============================================================================================-->
+
+
     <!-- General CSS Files -->
     <link rel="stylesheet" href="/assets/admin//modules/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/admin//modules/fontawesome/css/all.min.css">
@@ -37,8 +47,8 @@
             <div class="row">
                 <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                     <div class="login-brand">
-                        <img src="{{asset('/bin/admin/images/logo/TUTORIAL-01.jpg')}}" alt="logo" width="80" class="shadow-light rounded-circle">
-                        <img src="{{asset('/bin/admin/images/logo/TUTORIAL-02.jpg')}}" alt="logo" class="shadow-light">
+                        <img src="{{asset('/bin/admin/images/logo/TUTORIAL-01.png')}}" alt="logo" width="80" class="shadow-light rounded-circle">
+                        <img src="{{asset('/bin/admin/images/logo/TUTORIAL-02.png')}}" alt="logo" class="shadow-light">
                     </div>
 
                     @if ($errors->any())
@@ -87,6 +97,8 @@
                             @endif
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
