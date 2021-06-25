@@ -7,7 +7,7 @@ Route::group(['namespace' => 'Auth'], function () {
     // Web Auth Routes
     Route::get('/login', 'LoginController@showLoginForm');
     Route::post('/login', 'LoginController@login')->name('auth.login');
-    Route::get('/logout', 'LoginController@logout');
+    Route::get('/logout', 'LoginController@logout')->name('auth.logout');
 
     Route::get('/register', 'RegisterController@showRegistrationForm');
     Route::post('/registerUser', 'RegisterController@register')->name('auth.register');

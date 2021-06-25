@@ -125,6 +125,7 @@
 
 
 <div class="container-fluid">
+    @if(\Illuminate\Support\Facades\Auth::user())
     <div class="row line-header"></div>
     <div class="col-md-10 col-md-offset-1">
         <div class="row middle-header">
@@ -221,7 +222,7 @@
         </div>
     </div>
     <div class="row sep"></div>
-
+    @endif
     <div>
         <div class="row">
             <!-- Section: Header -->
@@ -276,8 +277,10 @@
                                         <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
                                         <div class="menu-subs menu-column-1">
                                             <ul>
+                                                @guest()
                                                 <li><a href="/user?redirect={{ Request::path() }}">Sign in</a></li>
                                                 <li><a href="/register">Sign Up</a></li>
+                                                @endguest
                                                 <li><a href="#">Help & Question</a></li>
                                                 <li><a href="#">Privacy & Policy</a></li>
                                             </ul>
