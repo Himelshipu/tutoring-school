@@ -20,6 +20,8 @@
 </head>
 <body>
 
+
+
 <div class="limiter">
     <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover;">
         <div class="wrap-login100">

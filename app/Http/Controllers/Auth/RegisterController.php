@@ -49,6 +49,7 @@ RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+
         return view(getTemplate().'.auth.register');
     }
 
@@ -60,6 +61,8 @@ RegisterController extends Controller
      */
     public function register(Request $request)
     {
+//        dd($request);
+
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
@@ -118,10 +121,12 @@ RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $vendor = \request()->vendor == 1 ? $data['vendor'] : 0;
         return User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
+            'vendor'=>$vendor,
             'password' => Hash::make($data['password']),
             'created_at' => time(),
             'admin' => false,

@@ -76,6 +76,11 @@
 						</span>
                 </div>
 
+                <div class="wrap-input100 validate-input">
+                    <input type="checkbox" id="vendor" name="vendor" value="1">
+                    <label for="vehicle1"> Register as a vendor</label><br>
+                </div>
+
                 <div class="container-login100-form-btn">
                     <input type="submit" name="submit" value="Register" class="login100-form-btn">
                 </div>
