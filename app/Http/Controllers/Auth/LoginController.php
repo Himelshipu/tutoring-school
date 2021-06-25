@@ -67,6 +67,7 @@ class LoginController extends Controller
         $this->validate($request, $rules);
 
         $user = User::where('username', $request->get('username'))->orWhere('email', $request->get('username'))->first();
+ 
 //        $user = User::where('username', $request->get('username'))->first();
 
         $validCredentials = Hash::check($request['password'], $user->getAuthPassword());
