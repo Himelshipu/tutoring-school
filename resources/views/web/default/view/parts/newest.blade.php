@@ -9,10 +9,12 @@
                 <div class="owl-carousel">
                     @foreach($new_content as $new)
                         <?php $meta = arrayToList($new->metas, 'option', 'value'); ?>
-                        <div class="owl-car-s" dir="rtl">
-                            <a href="/product/{{ $new->id }}/{!! \Illuminate\Support\Str::slug($new->title) ?? '' !!}" title="{{ $new->title }}" class="content-box">
+
+                        <div class="owl-car-s  " dir="rtl">
+                            <a href="/product/{{ $new->id }}/{!! \Illuminate\Support\Str::slug($new->title) ?? '' !!}" title="{{ $new->title }}" class="content-box ">
                                 <img src="{{ !empty($meta['thumbnail']) ? $meta['thumbnail'] : '' }}" alt="{!! $new->title ?? '' !!}"/>
                                 <h3>{!! truncate($new->title,30) !!}</h3>
+
                                 <div class="footer">
                                     @if(isset($new->user))
                                     <span class="avatar" title="{{ $new->user->name }}" onclick="window.location.href = '/profile/{{ $new->user->id }}'">
@@ -32,9 +34,18 @@
                                 </div>
                             </a>
                         </div>
+
+
+
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+
 </div>
+

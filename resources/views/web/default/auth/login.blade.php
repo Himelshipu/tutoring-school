@@ -31,7 +31,7 @@
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100 input-field validate" type="text" name="username" placeholder="{{ trans('main.username_email') }}"
-                           autocomplete="email" valid-title="Fill out this form" required>
+                            valid-title="Fill out this form" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>

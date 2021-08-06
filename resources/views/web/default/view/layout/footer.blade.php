@@ -86,7 +86,6 @@
 
 {{--menubar--}}
 <script src="{{asset('assets/default/new_menu/js/script.js')}}" defer></script>
-
 <script>
     $(document).ready(function(){
         var submitIcon = $('.searchbox-icon');

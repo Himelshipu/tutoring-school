@@ -1,47 +1,6 @@
 <div class="container-fluid">
     <div class="container news-container">
         <div class="row">
-            <div class="col-md-4 col-xs-12 col-sm-6 news-section">
-                <div class="row contents_box">
-                    <div class="header">
-						<i class="secicon mdi mdi-script-text"></i>
-                        <span>{{ trans('main.latest_articles') }}</span>
-                    </div>
-                    <div class="body">
-                        <ul>
-                            @foreach($article_post as $article)
-                                <li>
-                                    <a href="/article/item/{{ $article->id }}/{!! \Illuminate\Support\Str::slug($article->title) ?? '' !!}">
-                                        <img src="{{ $article->image }}" alt="{{ $article->title ?? '' }}"><span>{{ $article->title }}</span><label for="">{{ date('l d F Y',$article->created_at) }}</label>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="more-link">
-						<i class="secicon mdi mdi-dots-horizontal"></i>
-                        <a href="/article/list">{{ trans('main.more') }}</a>
-                    </div>
-                </div>
-                <div class="h-10"></div>
-                <div class="row contents_box">
-                    <div class="header header-news">
-						<i class="secicon mdi mdi-clipboard-text"></i>
-                        <span>{{ trans('main.latest_news') }}</span>
-                    </div>
-                    <div class="body">
-                        <ul>
-                            @foreach($blog_post as $post)
-                                <li><a href="/blog/post/{{ $post->id }}/{!! \Illuminate\Support\Str::slug($post->title) ?? '' !!}"><img src="{{ $post->image }}" alt=""><span>{{ $post->title }}</span><label for="">{{ date('l d F Y',$post->created_at) }}</label></a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="more-link">
-						<i class="secicon mdi mdi-dots-horizontal"></i>
-                        <a href="/blog">{{ trans('main.more') }}</a>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-8 col-xs-12 col-sm-6">
                 <div class="row-xs">
                     <div class="two-ads-container">
@@ -50,7 +9,7 @@
                             <div class="row">
                                 @foreach($ads as $ad)
                                     @if($ad->position == 'main-article-side')
-                                        <a href="{{ $ad->url }}"><img src="{{ $ad->image }}" class="{{ $ad->size }}"></a>
+                                        <a href="{{ $ad->url }}"><img src="{{ $ad->image }}" class="{{ $ad->size }}" style="height: 165px;"></a>
                                     @endif
                                 @endforeach
                                 <div class="h-15"></div>
@@ -61,7 +20,7 @@
                 <div class="row-xs contents_box">
                     <div class="top-user-container">
                         <div class="header">
-							<i class="secicon mdi mdi-teach"></i>
+                            <i class="secicon mdi mdi-teach"></i>
                             <span class="best-users">{{ trans('main.top_vendors') }}</span>
                         </div>
                         <div class="user-tabs">
@@ -77,11 +36,11 @@
                                         @foreach($user_rate as $ur)
                                             <?php $meta = arrayToList($ur->usermetas,'option','value'); ?>
                                             <div class="col-md-3 tab-con">
-                                        <a href="/profile/{{ $ur->id }}">
-                                            <img alt="{{ $ur->username ?? '' }}" src="{{ !empty($meta['avatar']) ? $meta['avatar'] : '/assets/default/images/user.png' }}">
-                                            <span>{{ !empty($ur->name) ? $ur->name : '' }}</span>
-                                        </a>
-                                    </div>
+                                                <a href="/profile/{{ $ur->id }}">
+                                                    <img alt="{{ $ur->username ?? '' }}" src="{{ !empty($meta['avatar']) ? $meta['avatar'] : '/assets/default/images/user.png' }}">
+                                                    <span>{{ !empty($ur->name) ? $ur->name : '' }}</span>
+                                                </a>
+                                            </div>
                                         @endforeach
                                     @endif
                                 </div>
@@ -119,7 +78,7 @@
                 <div class="row-xs contents_box">
                     <div class="top-user-container">
                         <div class="header">
-							<i class="secicon mdi mdi-bullhorn"></i>
+                            <i class="secicon mdi mdi-bullhorn"></i>
                             <span class="best-chanels">{{ trans('main.top_channels') }}</span>
                         </div>
                         <div class="user-tabs">
@@ -171,6 +130,48 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 col-xs-12 col-sm-6 news-section">
+                <div class="row contents_box">
+                    <div class="header">
+						<i class="secicon mdi mdi-script-text"></i>
+                        <span>{{ trans('main.latest_articles') }}</span>
+                    </div>
+                    <div class="body">
+                        <ul>
+                            @foreach($article_post as $article)
+                                <li>
+                                    <a href="/article/item/{{ $article->id }}/{!! \Illuminate\Support\Str::slug($article->title) ?? '' !!}">
+                                        <img src="{{ $article->image }}" alt="{{ $article->title ?? '' }}"><span>{{ $article->title }}</span><label for="">{{ date('l d F Y',$article->created_at) }}</label>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="more-link">
+						<i class="secicon mdi mdi-dots-horizontal"></i>
+                        <a href="/article/list">{{ trans('main.more') }}</a>
+                    </div>
+                </div>
+                <div class="h-10"></div>
+                <div class="row contents_box">
+                    <div class="header header-news">
+						<i class="secicon mdi mdi-clipboard-text"></i>
+                        <span>{{ trans('main.latest_news') }}</span>
+                    </div>
+                    <div class="body">
+                        <ul>
+                            @foreach($blog_post as $post)
+                                <li><a href="/blog/post/{{ $post->id }}/{!! \Illuminate\Support\Str::slug($post->title) ?? '' !!}"><img src="{{ $post->image }}" alt=""><span>{{ $post->title }}</span><label for="">{{ date('l d F Y',$post->created_at) }}</label></a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="more-link">
+						<i class="secicon mdi mdi-dots-horizontal"></i>
+                        <a href="/blog">{{ trans('main.more') }}</a>
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>

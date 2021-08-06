@@ -373,6 +373,36 @@ img, video {
     color: #e91e63
 }
 
+
+.test {
+    background-image: linear-gradient(purple, purple),
+    linear-gradient(purple, purple),
+    linear-gradient(purple, purple),
+    linear-gradient(purple, purple),
+    linear-gradient(transparent, transparent);
+    background-repeat: no-repeat;
+    background-size: 4px 50%, 50% 4px, 4px 50%, 50% 4px, calc(100% - 8px) calc(100% - 8px);
+    background-position: left bottom, left bottom, right top, right top, 4px 4px;
+
+    height: 281px;
+    width: 240px;
+    /*margin: 20px;*/
+
+
+}
+
+.gradient-border {
+    background-image: linear-gradient(red, purple),
+    linear-gradient(to right, purple, red),
+    linear-gradient(to bottom, purple, red),
+    linear-gradient(to left, purple, red),
+    linear-gradient(steelblue, steelblue);
+
+}
+
+
+
+
 @media only screen and (min-width: 993px) {
     .nav-header .menu > ul > li.menu-item-has-children:hover .menu-subs {
         margin-top: 0.5rem;
@@ -577,7 +607,7 @@ img, video {
     }
 
     .nav-header .menu > ul > li .menu-subs {
-        position: absolute;
+        /*position: absolute;*/
         display: none;
         top: 0;
         left: 0;

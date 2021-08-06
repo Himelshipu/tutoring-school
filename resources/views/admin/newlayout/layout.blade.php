@@ -240,7 +240,7 @@
                                 <li><a class="nav-link" href="/admin/discount/contentnew">{{  trans('admin.new_promotion') }}</a></li>
                             </ul>
                         </li>@endif
-                    {{--@if(checkAccess('ads'))
+                   @if(checkAccess('ads'))
                         <li class="dropdown" id="ads">
                             <a href="#" class="nav-link has-dropdown"><i class="fas fa-ad"></i> <span>{{  trans('admin.advertising') }}</span></a>
                             <ul class="dropdown-menu">
@@ -251,7 +251,7 @@
                                 <li><a class="nav-link" href="/admin/ads/newbox">{{  trans('admin.new_banner') }}</a></li>
                                 <li><a class="nav-link" href="/admin/ads/vip">{{  trans('admin.featured_products') }}</a></li>
                             </ul>
-                        </li>@endif--}}
+                        </li>@endif
                     @if(checkAccess('setting'))
                         <li class="menu-header">Setting & Profile</li>
                     @endif

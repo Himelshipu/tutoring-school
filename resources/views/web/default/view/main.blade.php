@@ -5,8 +5,8 @@
 @section('meta_description',get_option('site_meta_description'))
 @section('meta_keyword',get_option('site_meta_keyword'))
 @section('page')
-    @include(getTemplate() . '.view.parts.slider')
-    @include(getTemplate() . '.view.parts.container')
+    @include(getTemplate() . '.view.parts.slider') <br>
+{{--    @include(getTemplate() . '.view.parts.container')--}}
     @if(isset($setting['site']['main_page_newest_container']) and $setting['site']['main_page_newest_container'] == 1)
         @include(getTemplate() . '.view.parts.newest')
     @endif
@@ -17,9 +17,9 @@
     @if(isset($setting['site']['main_page_vip_container']) and $setting['site']['main_page_vip_container'] == 1)
         @include(getTemplate() . '.view.parts.vip')
     @endif
-    @if(isset($setting['site']['main_live_class']) and $setting['site']['main_live_class'] == 1)
+    {{--@if(isset($setting['site']['main_live_class']) and $setting['site']['main_live_class'] == 1)
         @include(getTemplate() . '.view.parts.live')
-    @endif
+    @endif--}}
     @include(getTemplate() . '.view.parts.news')
 
 @endsection
