@@ -10,8 +10,8 @@
                 <div class="owl-carousel">
                     @foreach($popular_content as $popular)
                         <?php $meta = arrayToList($popular->metas, 'option', 'value'); ?>
-                        <div class="owl-car-s" dir="rtl">
-                            <a href="/product/{{ $popular->id }}/{!! \Illuminate\Support\Str::slug($popular->title) ?? '' !!}" title="{{ $popular->title }}" class="content-box">
+                        <div class="owl-car-s" dir="rtl" >
+                            <a href="/product/{{ $popular->id }}/{!! \Illuminate\Support\Str::slug($popular->title) ?? '' !!}" title="{{ $popular->title }}" class="content-box" >
                                 <img alt="{{ $popular->title ?? '' }}" src="{{ !empty($meta['thumbnail']) ? $meta['thumbnail'] : '' }}"/>
                                 <h3>{!! truncate($popular->title,35) !!}</h3>
                                 <div class="footer">

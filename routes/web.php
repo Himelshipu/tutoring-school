@@ -3,6 +3,14 @@
 use Illuminate\Support\Facades\Route;
 
 
+//test
+
+Route::get('/test', function () {
+    return view('web.default.view.layout');
+});
+
+//test
+
 Route::group(['namespace' => 'Auth'], function () {
     // Web Auth Routes
     Route::get('/login', 'LoginController@showLoginForm');

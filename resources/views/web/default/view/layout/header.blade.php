@@ -32,6 +32,12 @@
 
 
     <style>
+        @media screen and (min-width: 768px) {
+            .search-box {
+                display: none;
+                margin-bottom: 20px;
+            }
+        }
 
         .searchbox {
             position: relative;
@@ -59,10 +65,8 @@
             margin: 0;
             padding: 0px 55px 0px 20px;
             font-size: 20px;
-
             border-radius: 20px;
         }
-
 
         .searchbox-icon,
         .searchbox-submit {
@@ -82,7 +86,7 @@
             text-align: center;
             cursor: pointer;
             color: #FFFFFF;
-            background: #008080;
+            background: #ED1D4F;
         }
 
         .searchbox-open {
@@ -121,8 +125,8 @@
     @yield('style')
 
 </head>
-<body>
 
+<body>
 
 <div class="container-fluid">
     @if(\Illuminate\Support\Facades\Auth::user())
@@ -133,17 +137,17 @@
 
             </div>
             <div class="col-md-6 col-xs-12 tab-con">
-<!--                <div class="row search-box">
+              <div class="row search-box">
                     <form action="/search">
                         {{ csrf_field() }}
                         <input type="text" name="q" class="col-md-11 provider-json" placeholder="Search..."/>
                         <button type="submit" name="search" class="pull-left col-md-1"><span
                                 class="homeicon mdi mdi-magnify"></span></button>
                     </form>
-                </div>-->
+                </div>
             </div>
             <div class="col-md-3 col-xs-12 text-center tab-con">
-                <div class="row">
+                <div class="row" style="margin-top: 15px;">
                     @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
                         <a href="/user/content/new" class="header-upload-button pulse"><span
                                 class="headericon mdi mdi-arrow-up-bold"></span>{{ trans('main.upload_course') }}</a>
@@ -152,8 +156,10 @@
                         <a href="/user/ticket" class="header-login-in-button">
                             <img src="{{ $userMeta['avatar'] ?? get_option('default_user_avatar','') }}"
                                  class="user-header-avatar">
-                            <span class="header-title-caption">{{ $user['name'] }}</span>
+
+<!--                            <span class="header-title-caption">{{ $user['name'] }}</span>
                             <span class="headericon mdi mdi-chevron-down"></span>
+
                             <label class="alert">
                                 @if(isset($alert['all']) && $alert['all']>0)
                                     <span class="noti-holder">{{ $alert['all'] }}</span>
@@ -166,7 +172,8 @@
                                     <span>{{ $alert['ticket'] }}</span>
                                 @endif
                                 <i class="headericon mdi mdi-email"></i>
-                            </label>
+                            </label>-->
+
                             <div class="animated user-overlap sbox3">
                                 <div class="overlap-profile-viewer">
                                     @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
@@ -224,7 +231,8 @@
     <div class="row sep"></div>
     @endif
     <div>
-        <div class="row">
+{{--        <div class="row" style="position: sticky;top: 0;">--}}
+        <div class="row" style="">
             <!-- Section: Header -->
             <header class="nav-header">
                 <div class="container">
