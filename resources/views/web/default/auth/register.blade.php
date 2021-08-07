@@ -29,7 +29,7 @@
                 <span class="login100-form-title">Register</span>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100 input-field validate" type="text" name="name" placeholder="Full Name"
+                    <input class="input100 input-field validate" type="text" name="firstName" placeholder="First Name"
                            required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100 input-field validate" type="text" name="username" placeholder="Username"
+                    <input class="input100 input-field validate" type="text" name="lastName" placeholder="Last Name"
                            required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
@@ -48,7 +48,15 @@
 
 
                 <div class="wrap-input100 validate-input">
+
                     <input class="input100 input-field validate" type="email" name="email" placeholder="Email" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                </div>
+                <div class="wrap-input100 validate-input">
+                    <input class="input100 input-field validate" type="text" name="dob" placeholder="Date Of Birth" onfocus="(this.type='date')">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>

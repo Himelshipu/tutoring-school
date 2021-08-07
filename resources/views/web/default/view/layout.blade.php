@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/reset.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/style.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/ionicon.min.css')}}">
+
+
     <style>
         @media screen and (min-width: 768px) {
             .search-box {
