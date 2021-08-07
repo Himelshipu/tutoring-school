@@ -35,10 +35,6 @@
 
     <style>
 
-
-
-
-
         .new_footer_area {
             background:#fbfbfd;
         }
