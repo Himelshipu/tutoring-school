@@ -222,11 +222,55 @@ class UserController extends Controller
         return back();
     }
 
-    public function userProfileMetaStore(Request $request)
-    {
+
+    public function training(Request $request){
+
         $data = $request->except('_token');
         $user = auth()->user();
 
+        $trainings = [];
+        for($i=0; $i<count($request->training_title); $i++)
+        {
+            $details[] = [
+                'training_name' => $request->training_name[$i],
+                'training_institute' => $request->training_institute[$i],
+                'training_starts' => $request->training_starts[$i],
+                'training_ends' => $request->training_ends[$i],
+                'training_description' => $request->training_description[$i],
+            ];
+        }
+
+        $training = new Usermeta();
+        $training->details                =  $details;
+
+        $training->save();
+    }
+
+
+    public function userProfileMetaStore(Request $request)
+    {
+//        dd($request->all());
+        $data = $request->except('_token');
+        $user = auth()->user();
+
+
+        /*$trainings = [];
+        for($i=0; $i<count($request->training_name); $i++)
+        {
+
+            $details[] = [
+                'training_name' => $request->training_name[$i],
+                'training_institute' => $request->training_institute[$i],
+                'training_starts' => $request->training_starts[$i],
+                'training_ends' => $request->training_ends[$i],
+                'training_description' => $request->training_description[$i],
+            ];
+
+        }
+
+        $training = new Usermeta();
+        $training->details                =  $details;
+        $training->save();*/
 
         if (is_array($data) and count($data) > 0) {
             Usermeta::updateOrNew($user->id, $data);
