@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="/assets/default/vendor/jquery-te/jquery-te-1.4.0.css"/>
     <link rel="stylesheet" href="/assets/default/stylesheets/vendor/mdi/css/materialdesignicons.min.css"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     <!--   menu bar-- -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/reset.min.css')}}">
@@ -41,7 +43,7 @@
 
 
         .new_footer_top {
-            padding: 120px 0px 270px;
+            padding: 30px 0px 100px;
             position: relative;
             overflow-x: hidden;
         }
@@ -68,8 +70,9 @@
             margin-top: 20px;
         }
         .btn_get_two:hover {
-            background: transparent;
+            background: #ED1D4F!important;
             color: #5e2ced;
+            border: 1px solid #ED1D4F!important;
         }
         .btn_get:hover {
             color: #fff;
@@ -138,8 +141,8 @@
         .btn_get_two {
             -webkit-box-shadow: none;
             box-shadow: none;
-            background: #5e2ced;
-            border-color: #5e2ced;
+            background: #ed2c7c;
+            border-color: #ed2c7c;
             color: #fff;
         }
 
@@ -149,8 +152,8 @@
         }
 
         .new_footer_top .f_social_icon a:hover {
-            background: #5e2ced;
-            border-color: #5e2ced;
+            background: #ED1D4F;
+            border-color: #ED1D4F;
             color:white;
         }
         .new_footer_top .f_social_icon a + a {
@@ -178,10 +181,10 @@
             position: absolute;
             bottom: 0;
             /*background: url("http://droitthemes.com/html/saasland/img/seo/footer_bg.png") no-repeat scroll center 0;*/
-            background: url("http://i.stack.imgur.com/kx8MT.gif") no-repeat scroll center 0;
+            /*background: url("http://i.stack.imgur.com/kx8MT.gif") no-repeat scroll center 0;*/
             background:white;
             width: 100%;
-            height: 266px;
+            /*height: 266px;*/
         }
 
         .new_footer_top .footer_bg .footer_bg_one {
@@ -501,7 +504,6 @@
                                                 <li><a href="/user?redirect={{ Request::path() }}">Sign in</a></li>
                                                 <li><a href="/register">Sign Up</a></li>
                                                 @endguest
-                                                <li><a href="#">Help & Question</a></li>
                                                 <li><a href="#">Privacy & Policy</a></li>
                                             </ul>
                                         </div>

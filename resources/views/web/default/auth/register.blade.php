@@ -21,8 +21,13 @@
 <body>
 
 <div class="limiter" style="height: 100%;width: 100%">
+
     <div class="container-login100" style="background: url({{asset('/assets/default/logreg/images/login-page-background.jpg')}});background-size: cover; ">
+
+
+
         <div class="wrap-login100">
+
             <form class="form" action="{{route('auth.register')}}" method="post" id="loginForm"
                   style="text-align: left;direction: ltr">
                 @csrf
@@ -46,7 +51,6 @@
 						</span>
                 </div>
 
-
                 <div class="wrap-input100 validate-input">
 
                     <input class="input100 input-field validate" type="email" name="email" placeholder="Email" required>
@@ -62,7 +66,6 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                 </div>
-
 
                 <div class="wrap-input100 validate-input">
                     <input type="password" name="password" class="input-field validate input100"
@@ -84,9 +87,9 @@
 						</span>
                 </div>
 
-                <div class="wrap-input100 validate-input">
-                    <input type="checkbox" id="vendor" name="vendor" value="1">
-                    <label for="vehicle1"> Register as a vendor</label><br>
+                <div class="wrap-input100 validate-input" style="padding: 5px 0px 0px 15px;">
+                    <input type="checkbox" id="vendor" name="vendor" value="1" style="margin: 5px;">
+                    <label for="vendor"> Register as a vendor</label><br>
                 </div>
 
                 <div class="container-login100-form-btn">
@@ -109,8 +112,9 @@
                     </a>
                 </div>
             </form>
-            <div class="login100-pic js-tilt">
-                <img src="{{asset('/assets/default/logreg/images/img-02.png')}}" alt="IMG" class="model">
+
+            <div class="login100-pic js-tilt reg_right" >
+                <img src="{{asset('/assets/default/logreg/images/img-02.png')}}" alt="IMG" class="model right_img" >
             </div>
         </div>
     </div>
@@ -127,4 +131,4 @@
     })
 </script>
 <!--===============================================================================================-->
-{{--<script src="{{asset('assets/default/logreg/js/main.js')}}"></script>--}}
+

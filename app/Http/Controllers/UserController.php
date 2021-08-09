@@ -227,6 +227,7 @@ class UserController extends Controller
         $data = $request->except('_token');
         $user = auth()->user();
 
+
         if (is_array($data) and count($data) > 0) {
             Usermeta::updateOrNew($user->id, $data);
 
@@ -237,6 +238,7 @@ class UserController extends Controller
             cache()->forget('user.' . $user->id . '.meta');
             cache()->forget('user.' . $user->id . '.metas.pluck.value');
         }
+
         return back();
     }
 
@@ -2083,6 +2085,7 @@ class UserController extends Controller
     ## Show Profile For All Users ##
     public function userProfileView($id)
     {
+
         $userContentsQuery = Content::where('user_id', $id)->where('mode', 'publish');
 
         $user = auth()->check() ? auth()->user() : false;
