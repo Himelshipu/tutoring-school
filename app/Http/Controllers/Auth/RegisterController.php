@@ -106,8 +106,9 @@ RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
+//            'username' => ['required', 'string', 'max:255'],
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 //            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -121,11 +122,34 @@ RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $dob = date('Y-m-d', strtotime($data['dob']));;
+        $firstName = $data['firstName'];
+        $lastName = $data['lastName'];
+        $lastName = strtolower($lastName);
+        $username = $firstName[0] . $lastName;
+
+        $i = 0;
+
+        while(User::whereUsername($username)->exists())
+        {
+            $i++;
+            $username = $firstName[0] . $lastName . $i;
+            $username = $username . rand(0,8);
+            $exist = User::where('username',$username)->first();
+            if ($exist){
+                $username = $username . rand(9,9);
+            }
+        }
+
         $vendor = \request()->vendor == 1 ? $data['vendor'] : 0;
         return User::create([
-            'name' => $data['name'],
-            'username' => $data['username'],
+            'name' => $firstName . ' '. $lastName,
+            'username' =>$username, 
+            'first_name' =>$firstName,
+            'last_name' =>$lastName,
+//            'username' => $data['username'],
             'email' => $data['email'],
+            'dob' => $dob,
             'vendor'=>$vendor,
             'password' => Hash::make($data['password']),
             'created_at' => time(),
