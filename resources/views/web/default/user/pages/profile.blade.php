@@ -252,7 +252,7 @@
                     <!-- certificate  start-->
 
                     <li>
-                        <div class="link"><h2><span class="usericon mdi mdi-folder-multiple-image"></span> Certificate &
+                        <div class="link"><h2><span class="usericon mdi mdi-folder-multiple-image"></span> Training &
                                 Projects </h2><i class="mdi mdi-chevron-down"></i></div>
                         <div class="submenu">
                             <div class="h-10"></div>
@@ -260,103 +260,184 @@
                                   enctype="multipart/form-data">
                                 {{ csrf_field() }}
 
-                                <div class="training-area">
+                                  <div class="training-area">
 
-                                        <h4> Training You Have Completed</h4>
-                                    <br>
-                                    <div id="training">
-                                      <div style="display: block">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-1 tab-con">Training On</label>
-                                            <div class="col-md-5 tab-con">
-                                                <input type="text" class="form-control" name="training_name[]"
-                                                       value="{!! !empty($meta['training_name']) ? $meta['training_name'] : '' !!}">
-                                            </div>
+                                                  <h4> Training You Have Completed</h4>
+                                              <br>
+                                              <div id="training">
 
-                                            <label class="control-label col-md-1 tab-con">Institution</label>
-                                            <div class="col-md-5 tab-con">
-                                                <input type="text" name="training_institute[]"
-                                                       value="{{ !empty($meta['training_institute']) ? $meta['training_institute'] : '' }}"
-                                                       class="form-control">
-                                            </div>
+                                                  @forelse(json_decode($meta['training']) as $training)
 
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-1 tab-con">Started on</label>
-                                            <div class="col-md-5 tab-con">
-                                                <input type="date" class="form-control" name="training_starts[]"
-                                                       value="{!! !empty($meta['training_starts']) ? $meta['training_starts'] : '' !!}">
-                                            </div>
+                                                <div style="display: block">
+                                                  <div class="form-group">
+                                                      <label class="control-label col-md-1 tab-con">Training On</label>
+                                                      <div class="col-md-5 tab-con">
+                                                          <input type="text" class="form-control" name="training_name[]"
+                                                          value="{!! $training->training_name ?? '' !!}" >
+                                                      </div>
 
-                                            <label class="control-label col-md-1 tab-con">Ends on</label>
-                                            <div class="col-md-5 tab-con">
-                                                <input type="date" name="training_ends[]"
-                                                       value="{{ !empty($meta['training_ends']) ? $meta['training_ends'] : '' }}"
-                                                       class="form-control">
-                                            </div>
+                                                      <label class="control-label col-md-1 tab-con">Institution</label>
+                                                      <div class="col-md-5 tab-con">
+                                                          <input type="text" name="training_institute[]"
+                                                                 value="{!! $training->training_institute ?? '' !!}"
+                                                                 class="form-control">
+                                                      </div>
 
-                                        </div>
-                                        <div class="form-group">
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label class="control-label col-md-1 tab-con">Started on</label>
+                                                      <div class="col-md-5 tab-con">
+                                                          <input type="date" class="form-control" name="training_starts[]"
+                                                                 value="{!! $training->training_starts ?? '' !!}">
+                                                      </div>
 
-                                            <label class="control-label col-md-1 tab-con">Description</label>
-                                            <div class="col-md-12 tab-con">
-                                                <textarea name="training_description[]" rows="5"
-                                                          class="form-control res-vertical">{{ !empty($meta['training_description']) ? $meta['training_description'] : '' }}</textarea>
-                                            </div>
+                                                      <label class="control-label col-md-1 tab-con">Ends on</label>
+                                                      <div class="col-md-5 tab-con">
+                                                          <input type="date" name="training_ends[]"
+                                                                 value="{!! $training->training_ends ?? '' !!}"
+                                                                 class="form-control">
+                                                      </div>
 
-                                        </div>
-                                        <div style="text-align: right">
-                                            <button class="btn pull-right remove-training" type="button"  style="background: red;color: white">
-                                                Remove
-                                            </button>
-                                        </div>
-                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
 
-                                    </div>
+                                                      <label class="control-label col-md-1 tab-con">Description</label>
+                                                      <div class="col-md-12 tab-con">
+                                                          <textarea name="training_description[]" rows="5"
+                                                                    class="form-control res-vertical"> {!! $training->training_description ?? '' !!}</textarea>
+                                                      </div>
 
-                                    <div>
-                                        <button class="btn btn-info" type="button" id="add-new-training">Add More +</button>
-                                    </div>
-                                </div>
+                                                  </div>
 
-                                <hr>
+                                                    <div style="text-align: right;margin-bottom: 10px;">
+                                                      <button class="btn remove-training" type="button"  style="background: red;color: white">
+                                                          Remove
+                                                      </button>
+                                                  </div>
+                                                </div>
+                                                  @empty
+                                                      <div style="display: block">
+                                                          <div class="form-group">
+                                                              <label class="control-label col-md-1 tab-con">Training On</label>
+                                                              <div class="col-md-5 tab-con">
+                                                                  <input type="text" class="form-control" name="training_name[]" value="">
+                                                              </div>
 
-                                <div class="project-area">
+                                                              <label class="control-label col-md-1 tab-con">Institution</label>
+                                                              <div class="col-md-5 tab-con">
+                                                                  <input type="text" name="training_institute[]"
+                                                                         value=""
+                                                                         class="form-control">
+                                                              </div>
 
+                                                          </div>
+                                                          <div class="form-group">
+
+                                                              <label class="control-label col-md-1 tab-con">Started on</label>
+                                                              <div class="col-md-5 tab-con">
+                                                                  <input type="date" class="form-control" name="training_starts[]"
+                                                                         value="">
+                                                              </div>
+
+                                                              <label class="control-label col-md-1 tab-con">Ends on</label>
+                                                              <div class="col-md-5 tab-con">
+                                                                  <input type="date" name="training_ends[]"
+                                                                         value=""
+                                                                         class="form-control">
+                                                              </div>
+
+                                                          </div>
+                                                          <div class="form-group">
+
+                                                              <label class="control-label col-md-1 tab-con">Description</label>
+                                                              <div class="col-md-12 tab-con">
+                                                          <textarea name="training_description[]" rows="5"
+                                                                    class="form-control res-vertical"></textarea>
+                                                              </div>
+
+                                                          </div>
+                                                          <div style="text-align: right;margin-bottom: 10px;">
+                                                              <button class="btn remove-training" type="button"  style="background: red;color: white">
+                                                                  Remove
+                                                              </button>
+                                                          </div>
+                                                      </div>
+                                                  @endforelse
+                                              </div>
+
+                                              <div>
+                                                  <button class="btn btn-info" type="button" id="add-new-training">Add More +</button>
+                                              </div>
+                                          </div>
+
+                                         <hr>
+
+                              <div class="project-area">
                                         <h4> Project You Have Done</h4>
-
                                     <br>
                                     <div id="project">
+
+                                         @forelse(json_decode($meta['projects']) as $project)
                                         <div style="display: block">
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 tab-con">Project Title</label>
+                                                <label class="control-label col-md-1 tab-con">project_title</label>
                                                 <div class="col-md-5 tab-con">
-                                                    <input type="text" class="form-control" name="Project_title[]"
-                                                           value="{!! !empty($meta['Project_title']) ? $meta['Project_title'] : '' !!}">
+                                                    <input type="text" class="form-control" name="project_title[]"
+                                                           value="{!! $project->project_title ?? '' !!}">
                                                 </div>
 
                                                 <label class="control-label col-md-1 tab-con">Project_goal</label>
                                                 <div class="col-md-5 tab-con">
                                                     <input type="text" name="project_goal[]"
-                                                           value="{{ !empty($meta['project_goal']) ? $meta['project_goal'] : '' }}"
-                                                           class="form-control">
+                                                           value="{!! $project->project_goal ?? '' !!}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
 
-                                                <label class="control-label col-md-1 tab-con">Description</label>
+                                                <label class="control-label col-md-1 tab-con">project_description</label>
                                                 <div class="col-md-12 tab-con">
                                                 <textarea name="project_description[]" rows="5"
-                                                          class="form-control res-vertical">{{ !empty($meta['project_description']) ? $meta['project_description'] : '' }}</textarea>
+                                                          class="form-control res-vertical"> {!! $project->project_description ?? '' !!}</textarea>
                                                 </div>
 
                                             </div>
-                                            <div style="text-align: right">
+                                            <div style="text-align: right; margin-bottom:10px">
                                                 <button class="btn remove" type="button"  style="background: red;color: white">
                                                     Remove
                                                 </button>
                                             </div>
                                         </div>
+                                        @empty
+                                            <div style="display: block">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-1 tab-con">project_title</label>
+                                                    <div class="col-md-5 tab-con">
+                                                        <input type="text" class="form-control" name="project_title[]"
+                                                               value="">
+                                                    </div>
+
+                                                    <label class="control-label col-md-1 tab-con">Project_goal</label>
+                                                    <div class="col-md-5 tab-con">
+                                                        <input type="text" name="project_goal[]"
+                                                               value="" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <label class="control-label col-md-1 tab-con">project_description</label>
+                                                    <div class="col-md-12 tab-con">
+                                                <textarea name="project_description[]" rows="5"
+                                                          class="form-control res-vertical"></textarea>
+                                                    </div>
+
+                                                </div>
+                                                <div style="text-align: right; margin-bottom:10px">
+                                                    <button class="btn remove" type="button"  style="background: red;color: white">
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                            </div>
+                                     @endforelse
                                     </div>
                                     <div>
                                         <button class="btn btn-info" type="button" id="add-new">Add More +</button>
@@ -403,8 +484,8 @@
                     </li>
                     <li>
                         <div class="link"><h2><span
-                                    class="usericon mdi mdi-map-marker"></span> {{ trans('main.postal') }} </h2><i
-                                class="mdi mdi-chevron-down"></i></div>
+                                    class="usericon mdi mdi-map-marker"></span> {{ trans('main.postal') }} </h2>
+                            <i class="mdi mdi-chevron-down"></i></div>
                         <ul class="submenu">
                             <div class="h-10"></div>
                             <form method="post" class="form-horizontal" action="/user/profile/meta/store">
@@ -524,7 +605,7 @@
                                             </div>
                                         </div>
                                         <div style="text-align: right">
-                                            <button class="btn  remove-training" type="button"  style="background: red;color: white">
+                                            <button class="btn remove-training" type="button"  style="background: red;color: white">
                                                 Remove
                                             </button>
                                         </div>
@@ -548,21 +629,21 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-1 tab-con">Project Title</label>
                                                 <div class="col-md-5 tab-con">
-                                                    <input type="text" class="form-control" name="Project_title"
+                                                    <input type="text" class="form-control" name="project_title[]"
                                                            value="">
                                                 </div>
 
-                                                <label class="control-label col-md-1 tab-con">Project_goal</label>
+                                                <label class="control-label col-md-1 tab-con">project_goal</label>
                                                 <div class="col-md-5 tab-con">
-                                                    <input type="text" name="project_goal"
+                                                    <input type="text" name="project_goal[]"
                                                            value=""
                                                            class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-1 tab-con">Description</label>
+                                                <label class="control-label col-md-1 tab-con">project_description</label>
                                                 <div class="col-md-12 tab-con">
-                                                <textarea name="project_description" rows="5"
+                                                <textarea name="project_description[]" rows="5"
                                                           class="form-control res-vertical"></textarea>
                                                 </div>
 
