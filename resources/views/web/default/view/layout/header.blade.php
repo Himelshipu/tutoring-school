@@ -308,6 +308,9 @@
             width: 100%;
         }
 
+        .header-item-right a:hover, .nav-header .menu > ul > li:hover > a .menu-mega{
+            display: block!important;
+        }
 
         @media screen and (max-width: 768px) {
             .search-area {
@@ -446,7 +449,7 @@
     <div class="row sep"></div>
     @endif
     <div>
-        <div class="row" style="position: sticky;top: 0;">
+
         <div class="row" style="">
             <!-- Section: Header -->
             <header class="nav-header">

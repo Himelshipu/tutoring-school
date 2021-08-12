@@ -259,12 +259,10 @@ class UserController extends Controller
         $data = $request->except('_token');
         $user = auth()->user();
 
-
-
-       if (count($request['training_name'])) {
-            $details = [];
+       if ($request['training_name'] && count($request['training_name'])) {
+            $trainings = [];
             for ($i = 0; $i < count($request['training_name']); $i++) {
-                $details[] = [
+                $trainings[] = [
                     'training_name' => $request->training_name[$i],
                     'training_institute' => $request->training_institute[$i],
                     'training_starts' => $request->training_starts[$i],
@@ -272,23 +270,22 @@ class UserController extends Controller
                     'training_description' => $request->training_description[$i],
                 ];
             }
-            $user->usermetas()->updateOrCreate(['option' => 'training'], ['value' => json_encode($details)]);
+            $user->usermetas()->updateOrCreate(['option' => 'training'], ['value' => json_encode($trainings)]);
         }
 
-           if (count($request['project_title'])) {
-
-            $details = [];
+           if ($request['project_title'] && count($request['project_title'])) {
+            $projects = [];
             for ($i = 0; $i < count($request['project_title']); $i++) {
-                $details[] = [
+                $projects[] = [
                     'project_title' => $request->project_title[$i],
                     'project_goal' => $request->project_goal[$i],
                     'project_description' => $request->project_description[$i],
                 ];
             }
-            $user->usermetas()->updateOrCreate(['option' => 'projects'], ['value' => json_encode($details)]);
+            $user->usermetas()->updateOrCreate(['option' => 'projects'], ['value' => json_encode($projects)]);
         }
 
-        if (is_array($data) and count($data) > 0  and !count($request['project_title'])) {
+        if (is_array($data) and count($data) > 0  and !$request['project_title'] and !$request['training_name']) {
             Usermeta::updateOrNew($user->id, $data);
 
             foreach ($data as $key => $value) {
