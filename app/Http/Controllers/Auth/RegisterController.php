@@ -144,7 +144,7 @@ RegisterController extends Controller
         $vendor = \request()->vendor == 1 ? $data['vendor'] : 0;
         return User::create([
             'name' => $firstName . ' '. $lastName,
-            'username' =>$username, 
+            'username' =>$username,
             'first_name' =>$firstName,
             'last_name' =>$lastName,
 //            'username' => $data['username'],

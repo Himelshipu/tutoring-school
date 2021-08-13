@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -78,9 +79,19 @@ class LoginController extends Controller
         $validCredentials = Hash::check($request['password'], $user->getAuthPassword());
 
         if ($validCredentials) {
+            $session = Session::getId();
+            if ($user){
+                if ($session != $user->session_id){
+                    Auth::logout();
+                }else{
+                    $user->session_id = $session;
+                    $user->update();
+                }
+
+            /*}
             if ($user->session_id == 0) {
                 $user->session_id = 1;
-                $user->update();
+                $user->update();*/
             }else{
                 return redirect('/login')->with('msg', trans('main.incorrect_login'));
             }
