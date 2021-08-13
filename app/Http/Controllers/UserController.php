@@ -44,6 +44,9 @@ use App\Models\TransactionCharge;
 use App\Models\Usermeta;
 use App\Models\UserRate;
 use App\User;
+use Config;
+use Exception;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -60,18 +63,20 @@ use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PPConnectionException;
 use PayPal\Rest\ApiContext;
 use Razorpay\Api\Api;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Tzsk\Payu\PayuGateway;
 use Unicodeveloper\Paystack\Facades\Paystack;
+use View;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $paypal_conf = \Config::get('paypal');
+        $paypal_conf = Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
                 $paypal_conf['client_id'],
                 $paypal_conf['secret'])
@@ -105,9 +110,9 @@ class UserController extends Controller
             ->get();
 
 
-        $userBuyCount = Sell::where('mode','pay')->where('buyer_id', $user->id)->count();
+        $userBuyCount = Sell::where('mode', 'pay')->where('buyer_id', $user->id)->count();
 
-        $userSell = Sell::where('mode','pay')->where('user_id', $user->id)->get();
+        $userSell = Sell::where('mode', 'pay')->where('user_id', $user->id)->get();
 
         $userMetas = Usermeta::where('user_id', $user->id)->pluck('value', 'option')->all();
 
@@ -135,7 +140,7 @@ class UserController extends Controller
 
         $sell_count_today = 0;
         $sell_count_month = 0;
-        $sell_count_all   = 0;
+        $sell_count_all = 0;
 
         foreach ($userSell as $us) {
             $sell_count_all++;
@@ -222,12 +227,65 @@ class UserController extends Controller
         return back();
     }
 
+
+    public function training(Request $request)
+    {
+
+        $data = $request->except('_token');
+        $user = auth()->user();
+
+        $trainings = [];
+        for ($i = 0; $i < count($request->training_title); $i++) {
+            $details[] = [
+                'training_name' => $request->training_name[$i],
+                'training_institute' => $request->training_institute[$i],
+                'training_starts' => $request->training_starts[$i],
+                'training_ends' => $request->training_ends[$i],
+                'training_description' => $request->training_description[$i],
+            ];
+        }
+
+        $training = new Usermeta();
+        $training->details = $details;
+
+        $training->save();
+
+
+    }
+
+
     public function userProfileMetaStore(Request $request)
     {
         $data = $request->except('_token');
         $user = auth()->user();
 
-        if (is_array($data) and count($data) > 0) {
+       if ($request['training_name'] && count($request['training_name'])) {
+            $trainings = [];
+            for ($i = 0; $i < count($request['training_name']); $i++) {
+                $trainings[] = [
+                    'training_name' => $request->training_name[$i],
+                    'training_institute' => $request->training_institute[$i],
+                    'training_starts' => $request->training_starts[$i],
+                    'training_ends' => $request->training_ends[$i],
+                    'training_description' => $request->training_description[$i],
+                ];
+            }
+            $user->usermetas()->updateOrCreate(['option' => 'training'], ['value' => json_encode($trainings)]);
+        }
+
+           if ($request['project_title'] && count($request['project_title'])) {
+            $projects = [];
+            for ($i = 0; $i < count($request['project_title']); $i++) {
+                $projects[] = [
+                    'project_title' => $request->project_title[$i],
+                    'project_goal' => $request->project_goal[$i],
+                    'project_description' => $request->project_description[$i],
+                ];
+            }
+            $user->usermetas()->updateOrCreate(['option' => 'projects'], ['value' => json_encode($projects)]);
+        }
+
+        if (is_array($data) and count($data) > 0  and !$request['project_title'] and !$request['training_name']) {
             Usermeta::updateOrNew($user->id, $data);
 
             foreach ($data as $key => $value) {
@@ -237,6 +295,7 @@ class UserController extends Controller
             cache()->forget('user.' . $user->id . '.meta');
             cache()->forget('user.' . $user->id . '.metas.pluck.value');
         }
+
         return back();
     }
 
@@ -494,8 +553,8 @@ class UserController extends Controller
                 ->setTransactions(array($transaction));
             try {
                 $payment->create($this->_api_context);
-            } catch (\PayPal\Exception\PPConnectionException $ex) {
-                if (\Config::get('app.debug')) {
+            } catch (PPConnectionException $ex) {
+                if (Config::get('app.debug')) {
                     \Session::put('error', 'Connection timeout');
                     return Redirect::route('paywithpaypal');
                 } else {
@@ -786,7 +845,7 @@ class UserController extends Controller
         $id = $request->get('request_id', null);
 
         if (!empty($id)) {
-            $uRequest = Requests::where('id', $id)->where('requester_id', $user->id)->first();;
+            $uRequest = Requests::where('id', $id)->where('requester_id', $user->id)->first();
             if ($uRequest) {
                 $uRequest->update(['content_id' => $request->content_id]);
             }
@@ -1234,7 +1293,7 @@ class UserController extends Controller
                     $result[$index]['title'] .= '&nbsp;(Free)&nbsp;';
                     break;
                 case '0':
-                    $result[$index]['price'] = '<img src="/assets/default/images/svg/lck.svg" style="width: 20px;height: auto;" title="Paid">';;
+                    $result[$index]['price'] = '<img src="/assets/default/images/svg/lck.svg" style="width: 20px;height: auto;" title="Paid">';
                     break;
                 case '':
                     $result[$index]['price'] = '<img src="/assets/default/images/svg/lck.svg" style="width: 20px;height: auto;" title="Paid">';
@@ -1441,13 +1500,11 @@ class UserController extends Controller
         $notifications = $notifications->take(20)->get();
 
 
-
-
         foreach ($notifications as $n) {
             notificationStatus($n->id, $user->id);
         }
 
-        User::find($user->id)->update(['last_view'=>time()]);
+        User::find($user->id)->update(['last_view' => time()]);
 
         return view(getTemplate() . '.user.ticket.notificationList', ['lists' => $notifications, 'count' => $count]);
     }
@@ -1606,8 +1663,8 @@ class UserController extends Controller
                 ->setTransactions(array($transaction));
             try {
                 $payment->create($this->_api_context);
-            } catch (\PayPal\Exception\PPConnectionException $ex) {
-                if (\Config::get('app.debug')) {
+            } catch (PPConnectionException $ex) {
+                if (Config::get('app.debug')) {
                     \Session::put('error', 'Connection timeout');
                     return Redirect::route('paywithpaypal');
                 } else {
@@ -1741,7 +1798,7 @@ class UserController extends Controller
                        <input type="hidden" name="_token" value="' . csrf_token() . '">
                     </form>';
         }
-        if ($request->type == 'stripe'){
+        if ($request->type == 'stripe') {
             Stripe::setApiKey(env('STRIPE_PRIVATE_KEY'));
             $Transaction = TransactionCharge::create([
                 'user_id' => $user->id,
@@ -1756,7 +1813,7 @@ class UserController extends Controller
                 'line_items' => [[
                     'price_data' => [
                         'currency' => currency(),
-                        'unit_amount' => currency() == 'USD'?$Transaction->price*100:$Transaction->price,
+                        'unit_amount' => currency() == 'USD' ? $Transaction->price * 100 : $Transaction->price,
                         'product_data' => [
                             'name' => 'Wallet Charge',
                         ],
@@ -1767,10 +1824,10 @@ class UserController extends Controller
                 'success_url' => url('/') . "/payment/wallet/status?gateway=stripe&session_id={CHECKOUT_SESSION_ID}",
                 'cancel_url' => url('/') . "/payment/wallet/status?gateway=stripe&session_id={CHECKOUT_SESSION_ID}",
             ]);
-            $Transaction->update(['authority'=>$Checkout->id]);
+            $Transaction->update(['authority' => $Checkout->id]);
             $Html = '<script src="https://js.stripe.com/v3/"></script>';
-            $Html.= '<script type="text/javascript">let stripe = Stripe("'.env('STRIPE_PUBLIC_KEY').'");';
-            $Html.= 'stripe.redirectToCheckout({ sessionId: "'.$Checkout->id.'" }); </script>';
+            $Html .= '<script type="text/javascript">let stripe = Stripe("' . env('STRIPE_PUBLIC_KEY') . '");';
+            $Html .= 'stripe.redirectToCheckout({ sessionId: "' . $Checkout->id . '" }); </script>';
             die($Html);
         }
 
@@ -2083,6 +2140,7 @@ class UserController extends Controller
     ## Show Profile For All Users ##
     public function userProfileView($id)
     {
+
         $userContentsQuery = Content::where('user_id', $id)->where('mode', 'publish');
 
         $user = auth()->check() ? auth()->user() : false;
@@ -2188,8 +2246,8 @@ class UserController extends Controller
         $path = 'bin/media/users/' . $user->id;
         $img = \Image::make($image);
 
-        if (!\File::exists($path)) {
-            \File::makeDirectory($path);
+        if (!File::exists($path)) {
+            File::makeDirectory($path);
         }
 
         $img_name = $user->username . '_' . $name . '.' . $image->getClientOriginalExtension();
@@ -2197,11 +2255,11 @@ class UserController extends Controller
         // save Main image
         $fileLocation = $path . "/" . $img_name;
 
-        if (\File::exists(public_path($fileLocation))) {
-            \File::delete([$fileLocation]);
+        if (File::exists(public_path($fileLocation))) {
+            File::delete([$fileLocation]);
         }
 
-        $move = \File::put($fileLocation, (string)$img->encode());
+        $move = File::put($fileLocation, (string)$img->encode());
         if ($move) {
             return $fileLocation;
         }
@@ -2283,8 +2341,8 @@ class UserController extends Controller
             ->setTransactions(array($transaction));
         try {
             $payment->create($this->_api_context);
-        } catch (\PayPal\Exception\PPConnectionException $ex) {
-            if (\Config::get('app.debug')) {
+        } catch (PPConnectionException $ex) {
+            if (Config::get('app.debug')) {
                 \Session::put('error', 'Connection timeout');
                 return Redirect::route('paywithpaypal');
             } else {
@@ -2671,7 +2729,8 @@ class UserController extends Controller
 
     }
 
-    public function wecashupPay(Request $request, $id, $mode = 'download'){
+    public function wecashupPay(Request $request, $id, $mode = 'download')
+    {
         $user = (auth()->check()) ? auth()->user() : false;
         if (!$user)
             return Redirect::to('/user?redirect=/product/' . $id);
@@ -2714,17 +2773,17 @@ class UserController extends Controller
         }
 
         $Transaction = Transaction::create([
-            'buyer_id'      => $user['id'],
-            'user_id'       => $content->user_id,
-            'content_id'    => $content->id,
-            'price'         => $Amount_pay,
+            'buyer_id' => $user['id'],
+            'user_id' => $content->user_id,
+            'content_id' => $content->id,
+            'price' => $Amount_pay,
             'price_content' => $Amount,
-            'mode'          => 'pending',
-            'created_at'    => time(),
-            'bank'          => 'wecashup',
-            'authority'     => 0,
-            'income'        => $Amount_pay - (($site_income / 100) * $Amount_pay),
-            'type'          => $mode
+            'mode' => 'pending',
+            'created_at' => time(),
+            'bank' => 'wecashup',
+            'authority' => 0,
+            'income' => $Amount_pay - (($site_income / 100) * $Amount_pay),
+            'type' => $mode
         ]);
 
         echo '<form action="https://academy.prodevelopers.eu/bank/wecashup/callback" method="POST" id="wecashup">
@@ -2733,17 +2792,17 @@ class UserController extends Controller
         data-demo
         data-sender-lang="en"
         data-sender-phonenumber=""
-        data-receiver-uid="'.env('Merchant_UID').'"
-        data-receiver-public-key="'.env('Merchant_Public_Key').'"
+        data-receiver-uid="' . env('Merchant_UID') . '"
+        data-receiver-public-key="' . env('Merchant_Public_Key') . '"
         data-transaction-parent-uid=""
-        data-transaction-receiver-total-amount="'.($Amount_pay).'"
-        data-transaction-receiver-reference="'.$Transaction->id.'"
-        data-transaction-sender-reference="'.$Transaction->id.'"
+        data-transaction-receiver-total-amount="' . ($Amount_pay) . '"
+        data-transaction-receiver-reference="' . $Transaction->id . '"
+        data-transaction-sender-reference="' . $Transaction->id . '"
         data-sender-firstname="Test"
         data-sender-lastname="Test"
         data-transaction-method="pull"
-        data-image="'.url('/').get_option('site_logo').'"
-        data-name="'.$content->title.'"
+        data-image="' . url('/') . get_option('site_logo') . '"
+        data-name="' . $content->title . '"
         data-crypto="true"
         data-cash="true"
         data-telecom="true"
@@ -2751,18 +2810,19 @@ class UserController extends Controller
         data-split="true"
         configuration-id="3"
         data-marketplace-mode="false"
-        data-product-1-name="'.$content->title.'"
+        data-product-1-name="' . $content->title . '"
         data-product-1-quantity="1"
-        data-product-1-unit-price="'.($Amount_pay).'"
-        data-product-1-reference="'.$Transaction->id.'"
+        data-product-1-unit-price="' . ($Amount_pay) . '"
+        data-product-1-reference="' . $Transaction->id . '"
         data-product-1-category="Billeterie"
-        data-product-1-description="'.$content->title.'"
+        data-product-1-description="' . $content->title . '"
         >
         </script>
 </form>';
-}
+    }
 
-    public function cinetpayPay(Request $request, $id, $mode = 'download'){
+    public function cinetpayPay(Request $request, $id, $mode = 'download')
+    {
         $user = (auth()->check()) ? auth()->user() : false;
         if (!$user)
             return Redirect::to('/user?redirect=/product/' . $id);
@@ -2805,36 +2865,36 @@ class UserController extends Controller
         }
 
         $Transaction = Transaction::create([
-            'buyer_id'      => $user['id'],
-            'user_id'       => $content->user_id,
-            'content_id'    => $content->id,
-            'price'         => $Amount_pay,
+            'buyer_id' => $user['id'],
+            'user_id' => $content->user_id,
+            'content_id' => $content->id,
+            'price' => $Amount_pay,
             'price_content' => $Amount,
-            'mode'          => 'pending',
-            'created_at'    => time(),
-            'bank'          => 'cinetpay',
-            'authority'     => 0,
-            'income'        => $Amount_pay - (($site_income / 100) * $Amount_pay),
-            'type'          => $mode
+            'mode' => 'pending',
+            'created_at' => time(),
+            'bank' => 'cinetpay',
+            'authority' => 0,
+            'income' => $Amount_pay - (($site_income / 100) * $Amount_pay),
+            'type' => $mode
         ]);
 
         try {
-            $id_transaction     = $Transaction->id;
-            $description        = $content->title;
-            $date_transaction   = date("Y-m-d H:i:s");
-            $amount             = $Amount_pay;
-            $payer_identify     = $Transaction->user->email;
-            $apiKey             = env('CINET_API_KEY');
-            $site_id            = env('CINET_SITE_ID');
-            $platform           = "PROD";
-            $version            = "V2";
-            $formName           = "goCinetPay";
-            $notify_url         = url('/').'/bank/cinetpay/notify';
-            $return_url         = url('/').'/bank/cinetpay/return';
-            $cancel_url         = url('/').'/bank/cinetpay/cancel';
-            $btnType            = 2;
-            $btnSize            = 'larger';
-            $CinetPay = new CinetPay($site_id,$apiKey,$platform,$version);
+            $id_transaction = $Transaction->id;
+            $description = $content->title;
+            $date_transaction = date("Y-m-d H:i:s");
+            $amount = $Amount_pay;
+            $payer_identify = $Transaction->user->email;
+            $apiKey = env('CINET_API_KEY');
+            $site_id = env('CINET_SITE_ID');
+            $platform = "PROD";
+            $version = "V2";
+            $formName = "goCinetPay";
+            $notify_url = url('/') . '/bank/cinetpay/notify';
+            $return_url = url('/') . '/bank/cinetpay/return';
+            $cancel_url = url('/') . '/bank/cinetpay/cancel';
+            $btnType = 2;
+            $btnSize = 'larger';
+            $CinetPay = new CinetPay($site_id, $apiKey, $platform, $version);
             $CinetPay->setTransId($id_transaction)
                 ->setDesignation($description)
                 ->setTransDate($date_transaction)
@@ -2845,13 +2905,14 @@ class UserController extends Controller
                 ->setReturnUrl($return_url)// optional
                 ->setCancelUrl($cancel_url)// optional
                 ->displayPayButton($formName, $btnType, $btnSize);
-        }catch (\Exception $e){
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
 
     }
 
-    public function stripePay(Request $request,$id, $mode = 'download'){
+    public function stripePay(Request $request, $id, $mode = 'download')
+    {
         $user = (auth()->check()) ? auth()->user() : false;
         if (!$user)
             return Redirect::to('/user?redirect=/product/' . $id);
@@ -2894,27 +2955,27 @@ class UserController extends Controller
         }
 
         $Transaction = Transaction::create([
-            'buyer_id'      => $user['id'],
-            'user_id'       => $content->user_id,
-            'content_id'    => $content->id,
-            'price'         => $Amount_pay,
+            'buyer_id' => $user['id'],
+            'user_id' => $content->user_id,
+            'content_id' => $content->id,
+            'price' => $Amount_pay,
             'price_content' => $Amount,
-            'mode'          => 'pending',
-            'created_at'    => time(),
-            'bank'          => 'stripe',
-            'authority'     => 0,
-            'income'        => $Amount_pay - (($site_income / 100) * $Amount_pay),
-            'type'          => $mode
+            'mode' => 'pending',
+            'created_at' => time(),
+            'bank' => 'stripe',
+            'authority' => 0,
+            'income' => $Amount_pay - (($site_income / 100) * $Amount_pay),
+            'type' => $mode
         ]);
 
-        try{
+        try {
             Stripe::setApiKey(env('STRIPE_PRIVATE_KEY'));
             $Checkout = Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
                     'price_data' => [
                         'currency' => currency(),
-                        'unit_amount' => currency() == 'USD'?$Transaction->price*100:$Transaction->price,
+                        'unit_amount' => currency() == 'USD' ? $Transaction->price * 100 : $Transaction->price,
                         'product_data' => [
                             'name' => $content->title,
                         ],
@@ -2922,16 +2983,16 @@ class UserController extends Controller
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => url('/') . '/bank/stripe/successfully?content_id='.$content->id."&session_id={CHECKOUT_SESSION_ID}",
-                'cancel_url' => url('/') . '/bank/stripe/cancel?content_id='.$content->id,
+                'success_url' => url('/') . '/bank/stripe/successfully?content_id=' . $content->id . "&session_id={CHECKOUT_SESSION_ID}",
+                'cancel_url' => url('/') . '/bank/stripe/cancel?content_id=' . $content->id,
             ]);
 
-            $Transaction->update(['authority'=>$Checkout->id]);
+            $Transaction->update(['authority' => $Checkout->id]);
             $Html = '<script src="https://js.stripe.com/v3/"></script>';
-            $Html.= '<script type="text/javascript">let stripe = Stripe("'.env('STRIPE_PUBLIC_KEY').'");';
-            $Html.= 'stripe.redirectToCheckout({ sessionId: "'.$Checkout->id.'" }); </script>';
+            $Html .= '<script type="text/javascript">let stripe = Stripe("' . env('STRIPE_PUBLIC_KEY') . '");';
+            $Html .= 'stripe.redirectToCheckout({ sessionId: "' . $Checkout->id . '" }); </script>';
             echo $Html;
-        }catch (\Exception $e){
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
@@ -3242,7 +3303,7 @@ class UserController extends Controller
                 'grade' => $data['grade'],
                 'type' => $data['type'],
                 'created_at' => time(),
-                'answer_video'=>$data['answer_video']
+                'answer_video' => $data['answer_video']
             ];
             $question = QuizzesQuestion::create($question_data);
             if ($question) {
@@ -3311,7 +3372,8 @@ class UserController extends Controller
         abort(404);
     }
 
-    public function QuizzesReview($quiz_id, Request $request){
+    public function QuizzesReview($quiz_id, Request $request)
+    {
         $user = auth()->user();
         $quiz = Quiz::where('id', $quiz_id)
             ->with(['questions' => function ($query) {
@@ -3334,7 +3396,7 @@ class UserController extends Controller
             $answers = QuizResult::find($request->id);
             $data = [
                 'quiz' => $quiz,
-                'answers'=> json_decode($answers->results,true)
+                'answers' => json_decode($answers->results, true)
             ];
             return view(getTemplate() . '.user.quizzes.review', $data);
         }
@@ -3660,9 +3722,9 @@ class UserController extends Controller
                 ];
 
                 if ($question->type == 'multiple') {
-                    $html = (string)\View::make(getTemplate() . '.user.quizzes.multiple_question_form', $data);
+                    $html = (string)View::make(getTemplate() . '.user.quizzes.multiple_question_form', $data);
                 } else {
-                    $html = (string)\View::make(getTemplate() . '.user.quizzes.descriptive_question_form', $data);
+                    $html = (string)View::make(getTemplate() . '.user.quizzes.descriptive_question_form', $data);
                 }
             }
         }
@@ -3693,7 +3755,7 @@ class UserController extends Controller
                 $question->update([
                     'title' => $data['title'],
                     'grade' => $data['grade'],
-                    'answer_video'=>$data['answer_video'],
+                    'answer_video' => $data['answer_video'],
                     'updated_at' => time(),
                 ]);
 

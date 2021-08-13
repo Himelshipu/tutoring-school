@@ -146,12 +146,82 @@
                         <div class="text-center">
                             <img src="/assets/default/images/empty/biography.png">
                             <div class="h-20"></div>
-                            <span class="empty-first-line">{{ trans('main.no_biography') }}</span>
+                            <span class="empty-first-line">Biography</span>
                             <div class="h-20"></div>
                         </div>
                     @else
                         {{ $meta['biography'] }}
                     @endif
+
+                    @if(!isset($meta['training']))
+                     <h4 class="text-danger text-center">No Training Added </h4>
+                    @else
+                            <h4> Training completed</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>training_name</th>
+                                        <th>training_institute</th>
+                                        <th>training_starts</th>
+                                        <th>training_ends</th>
+                                        <th>training_description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @forelse(json_decode($meta['training']) as $training)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{!! $training->training_name ?? '' !!}</td>
+                                        <td>{!! $training->training_institute ?? '' !!}</td>
+                                        <td>{!! $training->training_starts ?? '' !!}</td>
+                                        <td>{!! $training->training_ends ?? '' !!}</td>
+                                        <td>{!! $training->training_description ?? '' !!}</td>
+                                    </tr>
+                                    @empty
+                                        <p>No courses added</p>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                    @endif
+
+
+                        @if(!isset($meta['projects']))
+                            <h4 class="text-danger text-center">No Project Added </h4>
+                        @else
+                            <h4> Project completed</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>project_title</th>
+                                        <th>project_goal</th>
+                                        <th>project_description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @forelse(json_decode($meta['projects']) as $project)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{!! $project->project_title ?? '' !!}</td>
+                                            <td>{!! $project->project_goal ?? '' !!}</td>
+                                            <td>{!! $project->project_description ?? '' !!}</td>
+
+                                        </tr>
+                                    @empty
+                                        <p>No Project added</p>
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
+                </div>
+
+
+
                 </div>
 
                 <div id="t-videos" class="profile-section-fade newest-container newest-container-p">

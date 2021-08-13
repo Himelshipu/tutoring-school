@@ -185,8 +185,6 @@ iframe {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  /*flex-wrap: wrap;*/
-  /*justify-content: space-between;*/
     padding: 100px 80px 30px 80px;
 }
 
@@ -200,6 +198,21 @@ iframe {
   max-width: 100%;
 }
 
+
+.reg_right{
+    margin: 20px;
+    height: 520px;
+    /*border: 1px solid black;*/
+    position: relative;
+}
+.right_img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
 
 /*------------------------------------------------------------------
 [  ]*/

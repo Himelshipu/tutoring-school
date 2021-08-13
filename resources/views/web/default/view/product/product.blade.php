@@ -224,12 +224,12 @@
                     <div class="product-details-box">
                         <span class="proicon mdi mdi-calendar-month"></span><span>{{ date('d F Y',$product->created_at) }}</span>
                     </div>
-                    <div class="product-details-box">
+<!--                    <div class="product-details-box">
                         <span class="proicon mdi mdi-database"></span><span>
                             {{ $MB }}
                             {{ trans('main.mb') }}
                         </span>
-                    </div>
+                    </div>-->
                     <div class="product-details-box">
                         <span class="proicon mdi mdi-headset"></span>
                         <span>
@@ -260,7 +260,7 @@
                                     @if(!empty($product->price) and $product->price != 0)
                                         <div class="radio">
                                             <input type="radio" id="radio-2" name="buy_mode" data-mode="download" value="{{ price($product->id,$product->category_id,$meta['price'])['price'] }}" checked>
-                                            <label class="radio-label" for="radio-2">{{ trans('main.purchase_download') }}</label>
+                                            <label class="radio-label" for="radio-2">Purchase</label>
                                         </div>
                                     @endif
 
@@ -407,7 +407,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                </p>
+
                             </div>
                             <div class="modal-body">
                                 <div id="postAddressText">
@@ -576,13 +576,13 @@
                                 <div class="user-description-box">
                                     {{ $userMetas['short_biography'] }}
                                 </div>
-                                <div class="text-center">
+{{--                                <div class="text-center">
                                     @foreach($rates as $rate)
                                         @if (!empty($rate['image']))
                                             <img class="img-icon img-icon-s" src="{{ $rate['image'] }}" title="{{ $rate['description'] }}"/>
                                         @endif
                                     @endforeach
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="product-user-box-footer">
                                 <a href="/profile/{{ $product->user->id }}">{{ trans('main.vendor_profile') }}</a>
