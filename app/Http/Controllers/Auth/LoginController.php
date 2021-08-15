@@ -8,9 +8,9 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -41,13 +41,13 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['guest','notification'])->except('logout');
+        $this->middleware(['guest', 'notification'])->except('logout');
     }
 
     /**
      * Show the application's login form. Overrided
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function showLoginForm()
     {
@@ -56,11 +56,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
-//        User agent and user device ip
-//        $useragent['useragent'] = $request->server('HTTP_USER_AGENT');
-//        $ip['ip'] = $request->ip();
-
         $rules = [
             'username' => 'required',
             'password' => 'required|min:4',
@@ -71,35 +66,19 @@ class LoginController extends Controller
         }
 
         $this->validate($request, $rules);
-
         $user = User::where('username', $request->get('username'))->orWhere('email', $request->get('username'))->first();
-
-//        $user = User::where('username', $request->get('username'))->first();
-
         $validCredentials = Hash::check($request['password'], $user->getAuthPassword());
 
         if ($validCredentials) {
-            $session = Session::getId();
-            if ($user){
-                if ($session != $user->session_id){
-                    Auth::logout();
-                }else{
-                    $user->session_id = $session;
-                    $user->update();
-                }
-
-            /*}
-            if ($user->session_id == 0) {
-                $user->session_id = 1;
-                $user->update();*/
-            }else{
+            if ($user->session_ip && $user->session_ip != $request->ip() && $user->status_update->diffInMinutes(now()) < 5)
                 return redirect('/login')->with('msg', trans('main.incorrect_login'));
-            }
-        }else{
+        } else {
             return redirect('/login')->with('msg', trans('main.incorrect_login'));
         }
 
         if ($this->attemptLogin($request)) {
+            $user->session_ip = request()->ip();
+            $user->save();
             return $this->afterLogged($request);
         } else {
             return redirect('/login')->with('msg', trans('main.incorrect_login'));
@@ -176,11 +155,9 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(Request $request) {
-        $user = Auth::user();
-        if ($user){
-            $user->update(['session_id'=>0]);
-        }
+    public function logout(Request $request)
+    {
+        auth()->user()->update(['session_ip' => null]);
         Auth::logout();
         return redirect()->route('/');
     }

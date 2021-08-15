@@ -135,10 +135,7 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request) {
-        $user = Auth::user();
-        if ($user){
-            $user->update(['session_id'=>0]);
-        }
+        auth()->user()->update(['session_ip' => null]);
         Auth::logout();
         return redirect()->route('/');
     }
