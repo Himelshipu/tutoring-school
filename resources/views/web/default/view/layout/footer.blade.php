@@ -78,7 +78,7 @@
     </div>
 </footer>
 
-<div class="container-fluid" id="footer">
+{{--<div class="container-fluid" id="footer">
     <div class="container">
         <div class="col-md-3 col-xs-12 tab-con login-container">
             <h4>{{ get_option('footer_col1_title') }}</h4>
@@ -130,12 +130,12 @@
                 <h4 class="modal-title">{{ trans('main.file_manager') }}</h4>
             </div>
             <div class="modal-body">
-                {{--<iframe class="modal-body-s" width="100%" height="400" src="/assets/default/filemanager/dialog.php?type=2&field_id=upload-id-fill&relative_url=1" frameborder="0"></iframe>--}}
+                <iframe class="modal-body-s" width="100%" height="400" src="/assets/default/filemanager/dialog.php?type=2&field_id=upload-id-fill&relative_url=1" frameborder="0"></iframe>
                 <iframe src="/laravel-filemanager" style="width: 100%; height: 500px; overflow: hidden; border: none;"></iframe>
             </div>
         </div>
     </div>
-</div>
+</div>--}}
 @if(get_option('site_popup',0) == '1')
     <div class="modal fade" id="site_popup">
         <div class="modal-dialog popup_modal">
