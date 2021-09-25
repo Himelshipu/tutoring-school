@@ -67,7 +67,7 @@ class WebController extends Controller
 
     // home page
     public function home()
-    { 
+    {
         $user = (auth()->check()) ? auth()->user() : null;
         $data = [
             'new_content' => $this->getContents('new', 'id', 'DESC'),
@@ -896,7 +896,7 @@ class WebController extends Controller
         ## Live video ##
         if($buy || (isset($user) && $user->id == $product->user_id)){
             $live = MeetingDate::where('mode','active')->where('content_id', $id)->where('time_start','>',time())->orderBy('time_start')->limit(1)->get();
-        }else{
+        }else{ 
             $live = false;
         }
 

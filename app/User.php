@@ -11,23 +11,6 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $guarded = ['id'];
     public $timestamps = false;
-    protected $dates = [
-        'status_update',
-    ];
-
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot() {
-        parent::boot();
-        $user = auth()->user();
-        if ($user){
-            $user->status_update = now();
-            $user->update();
-        }
-    }
 
     public function usermetas()
     {
@@ -101,4 +84,5 @@ class User extends Authenticatable
         }
         return false;
     }
+
 }

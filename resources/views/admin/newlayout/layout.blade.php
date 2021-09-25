@@ -274,9 +274,7 @@
                             </ul>
                         </li>
                     @endif
-                    <li>
-{{--                        <a href="/admin/about" class="nav-link"><i class="fas fa-info"></i> <span>{{  trans('admin.about') }}</span></a>--}}
-                    </li>
+
                     <li>
                         <a href="/admin/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> <span>{{  trans('admin.exit') }}</span></a>
                     </li>

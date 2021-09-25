@@ -374,7 +374,6 @@
                         <a href="/user/ticket" class="header-login-in-button">
                             <img src="{{ $userMeta['avatar'] ?? get_option('default_user_avatar','') }}"
                                  class="user-header-avatar">
-
 <!--                            <span class="header-title-caption">{{ $user['name'] }}</span>
                             <span class="headericon mdi mdi-chevron-down"></span>
 
@@ -391,7 +390,6 @@
                                 @endif
                                 <i class="headericon mdi mdi-email"></i>
                             </label>-->
-
                             <div class="animated user-overlap sbox3">
                                 <div class="overlap-profile-viewer">
                                     @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
@@ -449,7 +447,6 @@
     <div class="row sep"></div>
     @endif
     <div>
-
         <div class="row" style="">
             <!-- Section: Header -->
             <header class="nav-header">
@@ -498,7 +495,7 @@
                                         </div>
                                     </li>
                                     <li><a href="{{url('/blog')}}">Blogs</a></li>
-                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="{{url('/about')}}">About Us</a></li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
                                         <div class="menu-subs menu-column-1">

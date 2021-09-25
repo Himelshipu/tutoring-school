@@ -8,12 +8,9 @@ use App\Models\Notification;
 use App\Models\Tickets;
 use App\User;
 use App\Models\Usermeta;
-use Carbon\Carbon;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Models\ChannelRequest;
-use Illuminate\Support\Facades\Session;
 
 class AdminMiddleware
 {
@@ -24,7 +21,6 @@ class AdminMiddleware
 
         if (auth()->check()) {
             $admin = auth()->user();
-
             if ($admin->isAdmin()) {
 
                 $_SESSION["kc_disable"] = false;
@@ -40,7 +36,7 @@ class AdminMiddleware
                 } else {
                     $capatibilty = 'all';
                 }
-
+                
                 if (!empty($capatibilty) and $capatibilty != 'all' and !in_array(Request::segment(2), $capatibilty) and Request::segment(2) != 'profile' and Request::segment(2) != 'video' and Request::segment(2) != 'about')
                     return abort(404);
                 global $Access;

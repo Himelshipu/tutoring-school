@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\ContentCategory;
 use App\Models\Option;
-use Carbon\Carbon;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
 
         ### share setting variable to all views
         view()->share('setting',$setting);
-
-        date_default_timezone_set('Asia/Dhaka');
 
     }
 
