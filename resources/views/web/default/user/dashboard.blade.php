@@ -8,7 +8,7 @@
         <div class="row ucp-top-panel">
             <div class="container no-padding-xs">
                 <div class="h-10 visible-xs"></div>
-                <a href="/user/balance" class="col-md-3 col-xs-6">
+                <a href="/user/balance" class="col-md-4 col-xs-6">
                     <div class="top-panel-box sbox3 sbox3-s">
                         <div class="icon-holder icon1 hidden-xs">
                             <span class="noticon mdi mdi-cash-usd"></span>
@@ -17,17 +17,17 @@
                         <div class="alert-box alert-box1">{!! $alert['sell_download'] !!}</div>
                     </div>
                 </a>
-                <a href="/user/balance/sell/post" class="col-md-3 col-xs-6">
-                    <div class="top-panel-box sbox3 sbox3-e">
-                        <div class="icon-holder icon2 hidden-xs">
-                            <span class="noticon mdi mdi-package-variant-closed"></span>
-                        </div>
-                        <p>{{ trans('main.new_postal_sales') }}</p>
-                        <div class="alert-box alert-box3">{!! $alert['sell_post'] !!}</div>
-                    </div>
-                </a>
+{{--                <a href="/user/balance/sell/post" class="col-md-3 col-xs-6">--}}
+{{--                    <div class="top-panel-box sbox3 sbox3-e">--}}
+{{--                        <div class="icon-holder icon2 hidden-xs">--}}
+{{--                            <span class="noticon mdi mdi-package-variant-closed"></span>--}}
+{{--                        </div>--}}
+{{--                        <p>{{ trans('main.new_postal_sales') }}</p>--}}
+{{--                        <div class="alert-box alert-box3">{!! $alert['sell_post'] !!}</div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
                 <div class="h-10 visible-xs"></div>
-                <a href="/user/ticket" class="col-md-3 col-xs-6">
+                <a href="/user/ticket" class="col-md-4 col-xs-6">
                     <div class="top-panel-box sbox3 sbox3m">
                         <div class="icon-holder icon3 hidden-xs">
                             <span class="noticon mdi mdi-comment-multiple-outline"></span>
@@ -36,7 +36,7 @@
                         <div class="alert-box alert-box2">{{ !empty($alert['ticket']) ? $alert['ticket'] : 0 }}</div>
                     </div>
                 </a>
-                <a href="/user/ticket/comments" class="col-md-3 col-xs-6">
+                <a href="/user/ticket/comments" class="col-md-4 col-xs-6">
                     <div class="top-panel-box sbox3 sbox3n">
                         <div class="icon-holder icon4 hidden-xs">
                             <span class="noticon mdi mdi-comment-processing-outline"></span>
