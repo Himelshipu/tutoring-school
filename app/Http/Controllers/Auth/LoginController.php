@@ -67,8 +67,8 @@ class LoginController extends Controller
         $validCredentials = Hash::check($request['password'], $user->getAuthPassword());
 
         if ($validCredentials) {
-            if ($user->session_id == 0) {
-                $user->session_id = 1;
+            if ($user->session_ip == 0) {
+                $user->session_ip = 1;
                 $user->update();
             }else{
                 return redirect('/login')->with('msg', trans('main.incorrect_login'));
@@ -157,7 +157,7 @@ class LoginController extends Controller
     public function logout(Request $request) {
         $user = Auth::user();
         if ($user){
-            $user->update(['session_id'=>0]);
+            $user->update(['session_ip'=>0]);
         }
         Auth::logout();
         return redirect()->route('/');

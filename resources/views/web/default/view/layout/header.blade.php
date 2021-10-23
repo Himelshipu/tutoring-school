@@ -369,52 +369,52 @@
                         <a href="/user/ticket" class="header-login-in-button">
                             <img src="{{ $userMeta['avatar'] ?? get_option('default_user_avatar','') }}"
                                  class="user-header-avatar">
-<!--                            <span class="header-title-caption">{{ $user['name'] }}</span>
+                            <span class="header-title-caption">{{ $user['name'] }}</span>
                             <span class="headericon mdi mdi-chevron-down"></span>
 
-                            <label class="alert">
-                                @if(isset($alert['all']) && $alert['all']>0)
-                                    <span class="noti-holder">{{ $alert['all'] }}</span>
-                                @endif
-                                <span class="noti-icon headericon mdi mdi-bell-alert"
-                                      onclick="window.location.href='/user/ticket/notification';"></span>
-                            </label>
-                            <label onclick="event.stopPropagation();" class="alert alert-f">
-                                @if(isset($alert['ticket']) && $alert['ticket']>0)
-                                    <span>{{ $alert['ticket'] }}</span>
-                                @endif
-                                <i class="headericon mdi mdi-email"></i>
-                            </label>-->
+{{--                            <label class="alert">--}}
+{{--                                @if(isset($alert['all']) && $alert['all']>0)--}}
+{{--                                    <span class="noti-holder">{{ $alert['all'] }}</span>--}}
+{{--                                @endif--}}
+{{--                                <span class="noti-icon headericon mdi mdi-bell-alert"--}}
+{{--                                      onclick="window.location.href='/user/ticket/notification';"></span>--}}
+{{--                            </label>--}}
+{{--                            <label onclick="event.stopPropagation();" class="alert alert-f">--}}
+{{--                                @if(isset($alert['ticket']) && $alert['ticket']>0)--}}
+{{--                                    <span>{{ $alert['ticket'] }}</span>--}}
+{{--                                @endif--}}
+{{--                                <i class="headericon mdi mdi-email"></i>--}}
+{{--                            </label>--}}
                             <div class="animated user-overlap sbox3">
-                                <div class="overlap-profile-viewer">
-                                    @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
-                                        <a href="/user/dashboard">
-                                            <img
-                                                src="{{ !empty($userMeta['avatar']) ? $userMeta['avatar'] : '/assets/default/images/user.png' }}"
-                                                class="dash-s">
-                                        </a>
-                                    @else
-                                        <a href="/user/content"><img
-                                                src="{{ !empty($userMeta['avatar']) ? $userMeta['avatar'] : '/assets/default/images/user.png' }}"
-                                                class="dash-s"></a>
-                                    @endif
-                                    @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)
-                                        <div class="overlap-profile-viewer-info">
-                                            <a href="/user/dashboard"
-                                               class="dash-s2"><span>{{ !empty($user['category']['title']) ? $user['category']['title'] : 'General User' }}</span></a>
-                                            <a href="/user/dashboard"
-                                               class="btn btn-danger">{{ trans('main.user_panel') }}</a>
-                                        </div>
-                                    @else
-                                        <div class="overlap-profile-viewer-info">
-                                            <a href="/user/video/buy"
-                                               class="dash-s2"><span>{{ !empty($user['category']['title']) ? $user['category']['title'] : 'General User' }}</span></a>
-                                            <a href="/user/video/buy"
-                                               class="btn btn-danger">{{ trans('main.user_panel') }}</a>
-                                        </div>
-                                    @endif
-                                </div>
+{{--                                <div class="overlap-profile-viewer">--}}
+{{--                                    @if(isset($user) && isset($user['vendor']) && $user['vendor'] == 1)--}}
+{{--                                        <a href="/user/dashboard">--}}
+{{--                                            <img--}}
+{{--                                                src="{{ !empty($userMeta['avatar']) ? $userMeta['avatar'] : '/assets/default/images/user.png' }}"--}}
+{{--                                                class="dash-s">--}}
+{{--                                        </a>--}}
+{{--                                        <div class="overlap-profile-viewer-info">--}}
+{{--                                            <a href="/user/dashboard"--}}
+{{--                                               class="dash-s2"><span>{{ !empty($user['category']['title']) ? $user['category']['title'] : 'General User' }}</span></a>--}}
+{{--                                            <a href="/user/dashboard"--}}
+{{--                                               class="btn btn-danger">{{ trans('main.user_panel') }}</a>--}}
+{{--                                        </div>--}}
+{{--                                    @else--}}
+{{--                                        <a href="/user/content"><img--}}
+{{--                                                src="{{ !empty($userMeta['avatar']) ? $userMeta['avatar'] : '/assets/default/images/user.png' }}"--}}
+{{--                                                class="dash-s"></a>--}}
+{{--                                        <div class="overlap-profile-viewer-info">--}}
+{{--                                            <a href="/user/video/buy"--}}
+{{--                                               class="dash-s2"><span>{{ !empty($user['category']['title']) ? $user['category']['title'] : 'General User' }}</span></a>--}}
+{{--                                            <a href="/user/video/buy"--}}
+{{--                                               class="btn btn-danger">{{ trans('main.user_panel') }}</a>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
                                 <ul>
+                                    <li><a href="/user/dashboard"><span
+                                                class="headericon mdi mdi-account"></span>
+                                            <p>{{ trans('main.user_panel') }}</p></a></li>
                                     <li><a href="/profile/{{ $user['id'] }}"><span
                                                 class="headericon mdi mdi-account"></span>
                                             <p>{{ trans('main.profile') }}</p></a></li>

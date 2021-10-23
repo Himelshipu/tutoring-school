@@ -301,24 +301,24 @@ class AdminController extends Controller
             $userList->orderBy('id', 'DESC');
         }
 
-        /*$userList = $userList->paginate(15);
-        return view('admin.user.list', array('users' => $userList));*/
+        $userList = $userList->paginate(15);
+        return view('admin.user.list', array('users' => $userList));
 
-        if ($request->ajax()) {
-            $data =  $userList = $userList->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('admin.user.list');
+//        if ($request->ajax()) {
+//            $data =  $userList = $userList->get();
+//            return Datatables::of($data)
+//                ->addIndexColumn()
+//                ->addColumn('action', function($row){
+//
+//                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+//
+//                    return $btn;
+//                })
+//                ->rawColumns(['action'])
+//                ->make(true);
+//        }
+//
+//        return view('admin.user.list');
     }
 
     public function userShow($id)
