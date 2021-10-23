@@ -9457,7 +9457,8 @@ select.list-dt:focus {
     z-index: 0;
     border: none;
     border-radius: 0.5rem;
-    position: relative
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 /10%), 0 2px 4px -1px rgb(0 0 0 /6%);
 }
 
 .fs-title {

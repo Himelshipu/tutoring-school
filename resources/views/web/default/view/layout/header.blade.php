@@ -23,18 +23,15 @@
     <link rel="stylesheet" href="/assets/default/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css"/>
     <link rel="stylesheet" href="/assets/default/vendor/jquery-te/jquery-te-1.4.0.css"/>
     <link rel="stylesheet" href="/assets/default/stylesheets/vendor/mdi/css/materialdesignicons.min.css"/>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
     <!--   menu bar-- -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/reset.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/style.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/ionicon.min.css')}}">
-
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/modified.css')}}">
 
-
+{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/style.css')}}">--}}
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/modified.css')}}">
     <style>
 
         .new_footer_area {
@@ -318,8 +315,6 @@
             }
         }
     </style>
-
-
     <!--    menu bar-- -->
 
     @if(get_option('site_rtl','0') == 1)
@@ -470,7 +465,7 @@
                                     </button>
                                 </div>
                                 <ul class="menu-section">
-                                    <li><a href="#">Home</a></li>
+                                    <li><a href="{{route('/')}}">Home</a></li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Categories <i class="ion ion-ios-arrow-down"></i></a>
                                         <div class="menu-subs menu-mega menu-column-4">
@@ -495,7 +490,7 @@
                                         </div>
                                     </li>
                                     <li><a href="{{url('/blog')}}">Blogs</a></li>
-                                    <li><a href="{{url('/about')}}">About Us</a></li>
+                                    <li><a href="{{url('/about-us')}}">About Us</a></li>
                                     <li class="menu-item-has-children">
                                         <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
                                         <div class="menu-subs menu-column-1">

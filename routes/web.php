@@ -47,6 +47,7 @@ Route::group(['middleware' => 'notification'], function () {
 
     ## Gift & Off
     Route::get('gift/{code}', 'WebController@giftChecker');
+    Route::get('about-us', 'PageController@about')->name('about');
 
     ## Chanel Section
     Route::group(['prefix' => 'chanel'], function () {
