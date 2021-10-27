@@ -29,10 +29,25 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/style.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/new_menu/css/ionicon.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/modified.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/util.css')}}">
 
 {{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/style.css')}}">--}}
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/modified.css')}}">
     <style>
+
+        .google-maps {
+            position: relative;
+            padding-bottom: 30%; // This is the aspect ratio
+            height: 0;
+            overflow: hidden;
+        }
+        .google-maps iframe {
+            position: absolute;
+            /*top: 0;*/
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
 
         .new_footer_area {
             background:#fbfbfd;

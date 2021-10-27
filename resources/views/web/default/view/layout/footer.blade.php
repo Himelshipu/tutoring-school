@@ -18,9 +18,9 @@
                     <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
                         <h3 class="f-title f_600 t_color f_size_18">Contact</h3>
                         <ul class="list-unstyled f_list">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{url('/about-us')}}">About Us</a></li>
+                            <li><a href="{{url('/contact-us')}}">Contact us</a></li>
+                            <li><a href="{{url('/blog')}}">Blog</a></li>
                             <li><a href="#">Careers</a></li>
                             <li><a href="#">Work With Us</a></li>
                         </ul>
