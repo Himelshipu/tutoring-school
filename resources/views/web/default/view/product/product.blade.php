@@ -264,14 +264,14 @@
                                         </div>
                                     @endif
 
-                                    @if($product->post == 1 && userMeta($product->user_id,'trip_mode') == 0)
+                                   {{-- @if($product->post == 1 && userMeta($product->user_id,'trip_mode') == 0)
                                         @if(!empty($product->price) and $product->price != 0)
                                             <div class="radio">
                                                 <input type="radio" id="radio-1" data-mode="post" value="{{ price($product->id,$product->category_id,$meta['post_price'])['price'] }}" name="buy_mode">
                                                 <label class="radio-label" for="radio-1">{{ trans('main.postal_purchase') }}</label>
                                             </div>
                                         @endif
-                                    @endif
+                                    @endif--}}
 
                                     @if(!empty($product->price) and $product->price != 0)
                                         <a class="btn btn-orange product-btn-buy sbox3" id="buy-btn" data-toggle="modal" data-target="#buyModal" href="">{{ trans('main.pay') }}</a>

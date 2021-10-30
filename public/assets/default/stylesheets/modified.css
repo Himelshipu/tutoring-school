@@ -619,3 +619,27 @@
 .h-100 {
     height: 100%!important;
 }
+
+
+.leading-snug {
+    line-height: 1.375!important;
+}
+.leading-normal {
+    line-height: 1.5!important;
+}
+.leading-relaxed {
+    line-height: 1.625!important;
+}
+.leading-loose {
+    line-height: 2!important;
+}
+p{
+    font-size: 13px!important;
+}
+
+
+
+/*image size for course video logo*/
+#myDiv_logo_image{
+    height: 100px!important;
+}

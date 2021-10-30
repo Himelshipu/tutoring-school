@@ -49,6 +49,10 @@ Route::group(['middleware' => 'notification'], function () {
     Route::get('gift/{code}', 'WebController@giftChecker');
     Route::get('about-us', 'PageController@about')->name('about');
     Route::get('contact-us', 'PageController@contact')->name('contact');
+    Route::get('privacy-policy', 'PageController@privacyPolicy')->name('privacy');
+    Route::get('terms-condition', 'PageController@termsCondition')->name('condition');
+    Route::get('faq', 'PageController@faq')->name('faq');
+    Route::get('career', 'PageController@career')->name('career');
 
     ## Chanel Section
     Route::group(['prefix' => 'chanel'], function () {

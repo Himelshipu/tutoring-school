@@ -35,6 +35,19 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/default/stylesheets/modified.css')}}">
     <style>
 
+
+        .bg-image {
+            background: linear-gradient
+            (rgba(20, 20, 20, .5),
+            rgba(20, 20, 20, .5)),
+          url('assets/default/images/bg-01.jpg')
+
+        }
+
+        /*url("images/headerbg.jpg");*/
+
+
+
         .google-maps {
             position: relative;
             padding-bottom: 30%; // This is the aspect ratio
@@ -441,7 +454,7 @@
                                     <li><a href="/user/profile"><span class="headericon mdi mdi-settings"></span>
                                             <p>{{ trans('main.settings') }}</p></a></li>
                                     <li><a href="/logout"><span class="headericon mdi mdi-power"></span>
-                                            <p>{{ trans('main.exit') }}</p></a></li>
+                                            <p>Log Out</p></a></li>
                                 </ul>
                             </div>
                         </a>
@@ -514,7 +527,7 @@
                                                 <li><a href="/user?redirect={{ Request::path() }}">Sign in</a></li>
                                                 <li><a href="/register">Sign Up</a></li>
                                                 @endguest
-                                                <li><a href="#">Privacy & Policy</a></li>
+                                                <li><a href="{{url('privacy-policy')}}">Privacy & Policy</a></li>
                                             </ul>
                                         </div>
                                     </li>

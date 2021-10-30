@@ -170,7 +170,7 @@
 
     <!-- Carousel -->
 
-    <div class="container-fluid">
+    {{--<div class="container-fluid">
         <div class="row">
             <div class="parts-slider"
                  style="background:url('{{ get_option('main_page_slide','/assets/default/images/view/sample/slider-sample.png') }}');
@@ -183,6 +183,6 @@
                 <i class="fa fa-angle-down down-flesh"></i>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 @endsection

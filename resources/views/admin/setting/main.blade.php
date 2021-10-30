@@ -251,7 +251,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <div class="col-md-12">
                                 <div class="custom-switches-stacked">
                                     <label class="custom-switch">
@@ -312,6 +312,8 @@
                             </div>
                         </div>
 
+                        --}}
+
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="custom-switches-stacked">
@@ -328,7 +330,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{--<div class="form-group">
                             <div class="col-md-12">
                                 <div class="custom-switches-stacked">
                                     <label class="custom-switch">
@@ -342,7 +344,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>

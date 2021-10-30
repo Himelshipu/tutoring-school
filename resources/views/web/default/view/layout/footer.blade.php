@@ -6,9 +6,9 @@
                     <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
                         <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
                         <p>Don’t miss any updates of our new Courses & Articles.</p>
-                        <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
+                        <form action="/" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
                             <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
-                            <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
+                            <a class="btn btn_get btn_get_two"  href="/">Subscribe</a>
                             <p class="mchimp-errmessage" style="display: none;"></p>
                             <p class="mchimp-sucmessage" style="display: none;"></p>
                         </form>
@@ -21,8 +21,7 @@
                             <li><a href="{{url('/about-us')}}">About Us</a></li>
                             <li><a href="{{url('/contact-us')}}">Contact us</a></li>
                             <li><a href="{{url('/blog')}}">Blog</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Work With Us</a></li>
+                            <li><a href="{{url('/career')}}">Careers</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,11 +29,10 @@
                     <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
                         <h3 class="f-title f_600 t_color f_size_18">Help</h3>
                         <ul class="list-unstyled f_list">
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Term &amp; conditions</a></li>
-                            <li><a href="#">Support Policy</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Report</a></li>
+                            <li><a href="{{url('/faq')}}">FAQ</a></li>
+                            <li><a href="{{url('/terms-condition')}}">Term &amp; conditions</a></li>
+                            <li><a href="{{url('/privacy-policy')}}">Privacy Policy</a></li>
+                            <li><a href="{{url('/contact-us')}}">Report</a></li>
                         </ul>
                     </div>
                 </div>
@@ -42,17 +40,17 @@
                     <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
                         <h3 class="f-title f_600 t_color f_size_18">Follow Us On</h3>
                         <div class="f_social_icon">
-                            <a href="#" >
+                            <a href="https://www.facebook.com/" >
                                 <i class="fab fa-facebook"></i>
 
                             </a>
-                            <a href="#" >
+                            <a href="https://twitter.com/" >
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#" >
+                            <a href="https://www.linkedin.com/" >
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="#" >
+                            <a href="https://www.pinterest.com/" >
                                 <i class="fab fa-pinterest"></i>
                             </a>
 
